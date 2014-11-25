@@ -1,0 +1,7 @@
+# build output directories
+out/
+build/
+
+# idea project files
+*.iml
+.idea/

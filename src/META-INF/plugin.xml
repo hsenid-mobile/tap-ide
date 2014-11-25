@@ -1,0 +1,28 @@
+<idea-plugin version="2">
+  <name>CTAP idea plugin</name>
+  <description>idea plugin for hsenid mobile solutions,cloud telco application platform - A.K.A :- CTAP</description>
+  <version>1.0</version>
+  <vendor>hms</vendor>
+    <!--
+    <idea-version since-build="8000"/>
+    -->
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+     
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->                       
+     <toolWindow id="CTAP simulator"   secondary="true" icon="/general/add.png" anchor="right" factoryClass="hms.ctap.idea.plugin.ui.CtapSimulatorWindowFactory">
+         
+     </toolWindow>
+  </extensions>
+</idea-plugin>
