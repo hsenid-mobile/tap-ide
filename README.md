@@ -32,7 +32,7 @@ We have started the project in great means of creating fully fledge framework sp
     + [ ] Saving application preferences.
     + [ ] 10 Tps load test/test results
 + [ ] IRC integration for developer support.
-+ [ ] Drag and drop, code generation for ussd based application.
++ [x] Drag and drop, code generation for ussd based application.
 
 ## Links
 
