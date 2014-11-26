@@ -21,7 +21,7 @@ CTAP plugin is an attempt to build an outstanding IDE for
 
 We have started the project in great means of creating fully fledge framework specific IDE for CTAP, following are our milestones:
 
-+ [ ] Providing application templates, for project creation wizard
++ [x] Providing application templates, for project creation wizard
 + [ ] Full scale simulator for testing.
     + [ ] Multiple mobile phones simulation (Multiple inboxes)
     + [ ] SMS simulation
