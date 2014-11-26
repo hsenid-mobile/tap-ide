@@ -33,6 +33,7 @@ We have started the project in great means of creating fully fledge framework sp
     + [ ] 10 Tps load test/test results
 + [ ] IRC integration for developer support.
 + [ ] Drag and drop, code generation for ussd based application.
++ [x] Create an ant task to build intellij IDEA community edition (max, win, linux) with hsenid brandings including the plugin. (Should not modify the community edition source code)
 
 ## Links
 
