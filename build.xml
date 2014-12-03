@@ -5,6 +5,7 @@
     <!-- set global properties for this build -->
     <property environment="env"/>
     <property name="src" location="src"/>
+    <property name="templates" location="templates"/>
     <property name="build" location="build"/>
     <property name="lib-dir" location="lib"/>
     <property name="idea.community.build" location="${env.IDEA_IC}" />
@@ -24,6 +25,8 @@
         <tstamp/>
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
+
+        <zip destfile="${build}/resources/CTAP_SMS_Service_Application.zip" basedir="${templates}" includes="**/*.*"/>
 
         <echo message="Using IDEA build from: ${idea.community.build}" />
     </target>
