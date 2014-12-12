@@ -7,5 +7,5 @@ build/
 .idea/
 
 # idea project files inside templates
-!templates/*/.idea
-!templates/*/.idea/*.iml
+!templates/*/*/.idea
+!templates/*/*/.idea/*.iml
