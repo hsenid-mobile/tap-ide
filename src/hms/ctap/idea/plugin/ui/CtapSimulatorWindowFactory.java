@@ -1,5 +1,6 @@
 package hms.ctap.idea.plugin.ui;
 
+import com.google.common.base.Optional;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
@@ -46,6 +47,7 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
 
     public void currentDateTime() {
         logo.setIcon(new ImageIcon(getClass().getResource("/hms/ctap/idea/plugin/ui/Dev_Space_logo.png")));
+        logo.setText(Optional.fromNullable("Guava integration working").or(""));
     }
 
 }
