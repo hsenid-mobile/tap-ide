@@ -1,7 +1,9 @@
 package hms.ctap.idea.plugin.ui;
 
 import javax.swing.*;
+import javax.swing.JPanel;
 import javax.swing.text.Document;
+import java.lang.Exception;
 import java.net.URL;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -13,15 +15,15 @@ import hms.ctap.idea.plugin.ui.NcsUiFactory;
 public class UssdUiFactory extends NcsUiFactory {
 
 
-    public UssdUiFactory(){
-
+    public UssdUiFactory(JPanel toolWindowContent){
+            super(toolWindowContent);
     }
 
     public JPanel createInitialUI() {
-        SpringLayout  bgLayout = new SpringLayout();
-        JPanel ussdInitialUI = new JPanel(bgLayout);
 
-        displayTextArea = new JTextArea("", 1, 10);
+        elementContainer.removeAll();
+
+        displayTextArea = new JTextArea("", 1, 30);
         Font font = new Font("Verdana", Font.BOLD, 25);
         displayTextArea.setFont(font);
         displayTextArea.setLineWrap(true);
@@ -30,7 +32,7 @@ public class UssdUiFactory extends NcsUiFactory {
         displayTextArea.removeAll();
 
         JLabel topIcons = new JLabel(new ImageIcon(getImage("top.png")));
-        ussdInitialUI.add(topIcons);
+        elementContainer.add(topIcons);
 
 
         //Key pad elements
@@ -129,6 +131,20 @@ public class UssdUiFactory extends NcsUiFactory {
             }
         });
 
+        btn13.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                //displayTextArea.append("#");
+            }
+        });
+
+        btn14.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                createWaitingUI();
+//                createUserResponseUI("  Thank you for using this \n simulator..","test");
+
+            }
+        });
+
         btn15.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 Document doc = displayTextArea.getDocument();
@@ -146,7 +162,7 @@ public class UssdUiFactory extends NcsUiFactory {
         keyPad.add(btn02);
         keyPad.add(btn03);
 
-        ussdInitialUI.add(displayTextArea);
+        elementContainer.add(displayTextArea);
         GridBagConstraints gbcBtn04 = new GridBagConstraints();
         gbcBtn04.gridx=0;
         gbcBtn04.gridy=1;
@@ -221,13 +237,10 @@ public class UssdUiFactory extends NcsUiFactory {
         gbcBtn15.gridy=4;
         keyPadLayout.setConstraints(btn15,gbcBtn15);
         keyPad.add(btn15);
-        ussdInitialUI.add(keyPad);
-
+        elementContainer.add(keyPad);
+        elementContainer.add(phoneImage);
 
         //Top icons
-        JLabel phoneImage = new JLabel(new ImageIcon(getImage("phone.png")));
-        ussdInitialUI.add(phoneImage);
-
         bgLayout.putConstraint(SpringLayout.WEST,keyPad,171,SpringLayout.WEST,phoneImage);
         bgLayout.putConstraint(SpringLayout.NORTH,keyPad,240,SpringLayout.NORTH,phoneImage);
         bgLayout.putConstraint(SpringLayout.WEST,topIcons,173,SpringLayout.WEST,phoneImage);
@@ -235,7 +248,63 @@ public class UssdUiFactory extends NcsUiFactory {
         bgLayout.putConstraint(SpringLayout.WEST,displayTextArea,173,SpringLayout.WEST,phoneImage);
         bgLayout.putConstraint(SpringLayout.NORTH,displayTextArea,180,SpringLayout.NORTH,phoneImage);
 
-        return ussdInitialUI;
+        elementContainer.revalidate();
+        elementContainer.repaint();
+
+        return elementContainer;
+
+    }
+
+    public JPanel createWaitingUI() {
+        elementContainer.removeAll();
+        JLabel ussdRunning = new JLabel(new ImageIcon(getImage("ussd_running.png")));
+        elementContainer.add(ussdRunning);
+        elementContainer.add(phoneImage);
+        bgLayout.putConstraint(SpringLayout.WEST,ussdRunning,190,SpringLayout.WEST,phoneImage);
+        bgLayout.putConstraint(SpringLayout.NORTH,ussdRunning,125,SpringLayout.NORTH,phoneImage);
+        elementContainer.revalidate();
+        elementContainer.repaint();
+        return elementContainer;
+
+    }
+
+    public JPanel createUserResponseUI(String message, String ussdOperation) {
+
+        elementContainer.removeAll();
+
+        JLabel responseBg = new JLabel(new ImageIcon(getImage("response.png")));
+        JPanel responseBox = new JPanel(new BorderLayout());
+        Font font = new Font("Verdana", Font.BOLD, 12);
+
+        JTextArea responseText = new JTextArea(10,20);
+        responseText.append(message);
+        responseText.setFont(font);
+        responseText.setLineWrap(true);
+        responseText.setBackground(new Color(29,46,60));
+
+        JButton btnOK = new JButton("OK");
+
+        responseBox.add(btnOK,BorderLayout.SOUTH);
+        responseBox.setBackground(new Color(29,46,60));
+        responseBox.add(responseText);
+        responseText.setBackground(new Color(29,46,60));
+        responseText.setForeground(Color.WHITE);
+
+        elementContainer.add(responseBox);
+        elementContainer.add(responseBg);
+        elementContainer.add(phoneImage);
+
+
+        bgLayout.putConstraint(SpringLayout.WEST,responseBg,173,SpringLayout.WEST,phoneImage);
+        bgLayout.putConstraint(SpringLayout.NORTH,responseBg,125,SpringLayout.NORTH,phoneImage);
+        bgLayout.putConstraint(SpringLayout.WEST,responseBox,182,SpringLayout.WEST,phoneImage);
+        bgLayout.putConstraint(SpringLayout.NORTH,responseBox,212,SpringLayout.NORTH,phoneImage);
+
+
+        elementContainer.revalidate();
+        elementContainer.repaint();
+        return elementContainer;
+
 
     }
 

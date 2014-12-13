@@ -23,7 +23,7 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
     private ToolWindow toolWindow;
 
     public CtapSimulatorWindowFactory() {
-         UssdUiFactory ussdUiFactory = new UssdUiFactory();
+         UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
          this.toolWindowContent = ussdUiFactory.createInitialUI();
     }
 
