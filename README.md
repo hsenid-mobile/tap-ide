@@ -23,13 +23,13 @@ We have started the project in great means of creating fully fledge framework sp
 
 + [ ] Providing application templates, for project creation wizard
 + [ ] Full scale simulator for testing.
-    + [ ] Multiple mobile phones simulation (Multiple inboxes)
-    + [ ] SMS simulation
+    + [x] Multiple mobile phones simulation (Multiple inboxes)
+    + [x] SMS simulation
     + [ ] USSD simulation
     + [ ] CAS simulation
     + [ ] Subscription simulation
     + [ ] LBS simulation
-    + [ ] Saving application preferences.
+    + [x] Saving application preferences.
     + [ ] 10 Tps load test/test results
 + [ ] IRC integration for developer support.
 + [x] Drag and drop, code generation for ussd based application.

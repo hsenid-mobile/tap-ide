@@ -7,47 +7,36 @@ import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.lang.System;
+import java.net.URL;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Alexey.Chursin
- * Date: Aug 25, 2010
- * Time: 2:09:00 PM
- */
+import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.text.Document;
+import java.awt.*;
+import java.lang.String;
+import hms.ctap.idea.plugin.ui.UssdUiFactory;
+
 public class CtapSimulatorWindowFactory implements ToolWindowFactory {
 
-
-    private JButton hideToolWindowButton;
-    private JLabel logo;
     private JPanel toolWindowContent;
     private ToolWindow toolWindow;
 
-
     public CtapSimulatorWindowFactory() {
-        hideToolWindowButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                toolWindow.hide(null);
-            }
-        });
+         UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
+         this.toolWindowContent = ussdUiFactory.createInitialUI();
     }
 
-    // Create the tool window content.
     public void createToolWindowContent(Project project, ToolWindow toolWindow) {
         this.toolWindow = toolWindow;
-        this.currentDateTime();
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(toolWindowContent, "", false);
         toolWindow.getContentManager().addContent(content);
 
     }
 
-
-    public void currentDateTime() {
-        logo.setIcon(new ImageIcon(getClass().getResource("/hms/ctap/idea/plugin/ui/Dev_Space_logo.png")));
-        logo.setText(Optional.fromNullable("Guava integration working").or(""));
+    public void setToolWindowContent(JPanel toolWindowContent){
+        this.toolWindowContent = toolWindowContent;
     }
 
 }
