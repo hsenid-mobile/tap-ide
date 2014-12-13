@@ -5,3 +5,7 @@ build/
 # idea project files
 *.iml
 .idea/
+
+# idea project files inside templates
+!templates/*/*/.idea
+!templates/*/*/.idea/*.iml

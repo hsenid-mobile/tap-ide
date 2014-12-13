@@ -5,7 +5,10 @@
     <!-- set global properties for this build -->
     <property environment="env"/>
     <property name="src" location="src"/>
+    <property name="sms-templates" location="templates/sms"/>
+    <property name="ussd-templates" location="templates/ussd"/>
     <property name="build" location="build"/>
+    <property name="lib-dir" location="lib"/>
     <property name="idea.community.build" location="${env.IDEA_IC}" />
 
     <taskdef name="javac2" classname="com.intellij.ant.Javac2">
@@ -24,6 +27,9 @@
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
 
+        <zip destfile="${build}/resources/CTAP_SMS_Service_Application.zip" basedir="${sms-templates}" includes="**/*.*"/>
+        <zip destfile="${build}/resources/CTAP_USSD_Service_Application.zip" basedir="${ussd-templates}" includes="**/*.*"/>
+
         <echo message="Using IDEA build from: ${idea.community.build}" />
     </target>
 
@@ -32,6 +38,7 @@
         <javac2 excludes="**/resolve/references/*Reference.java" srcdir="${src}" destdir="${build}" verbose="false" debug="true" source="1.6" target="1.6" includeantruntime="false" >
             <classpath>
                 <fileset dir="${idea.community.build}" includes="**/*.jar" />
+                <fileset dir="${lib-dir}" includes="**/*.jar" />
             </classpath>
             <compilerarg value="-Xlint:deprecation" />
         </javac2>
@@ -40,11 +47,16 @@
     <target name="package" depends="compile" description="generate the distribution">
 
         <!-- Create the distribution archive -->
-        <jar jarfile="${build}/${ctap.idea.plugin.name}.jar" update="true">
+        <jar jarfile="${build}/${ctap.idea.plugin.name}/lib/${ctap.idea.plugin.name}.jar" update="true">
             <fileset dir="${build}" includes="**/*.*" />
             <fileset dir="${src}" excludes="**/*.java" />
         </jar>
 
+        <copy todir="${build}/${ctap.idea.plugin.name}/lib">
+            <fileset dir="${lib-dir}"/>
+        </copy>
+
+        <zip destfile="${build}/${ctap.idea.plugin.name}.zip" basedir="${build}" includes="**/*.jar"/>
     </target>
 
     <target name="clean" description="clean up">

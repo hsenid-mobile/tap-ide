@@ -21,8 +21,8 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->                       
-     <toolWindow id="CTAP simulator"   secondary="true" icon="/general/add.png" anchor="right" factoryClass="hms.ctap.idea.plugin.ui.CtapSimulatorWindowFactory">
-         
-     </toolWindow>
+     <toolWindow id="CTAP simulator"   secondary="true" icon="/general/add.png" anchor="right" factoryClass="hms.ctap.idea.plugin.ui.CtapSimulatorWindowFactory"/>         
+     <projectTemplate projectType="CTAP Application" templatePath="resources/CTAP_SMS_Service_Application.zip" category="true"/>
+     <projectTemplate projectType="CTAP Application" templatePath="resources/CTAP_USSD_Service_Application.zip" category="true"/>
   </extensions>
 </idea-plugin>
