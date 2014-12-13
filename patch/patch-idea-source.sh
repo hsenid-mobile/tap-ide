@@ -1,20 +1,16 @@
 #---- Configurations mandatory ------------
 #This should be the folder containing the main build.xml file
-idea_source_location=/home/hsenid/Desktop/code-sample-app/intellij/intellij-community
+idea_source_location=/foss/ctap-dev-studio/intellij-community-idea-140.455/
 #Give a clean folder to keep the temporary backups. Do not delete till patching is complete
-backup_location=/home/hsenid/Desktop/code-sample-app/backup
-#path to ant bin
-ant_bin=/home/hsenid/Desktop/build-reqs/apache-ant-1.9.4/bin
-#path to java home, not bin. should be 1.6
-java_home=/home/hsenid/Desktop/build-reqs/jdk1.6.0_45
 #------- end of configurations ---------
 
 #setting paths
-export JAVA_HOME=$java_home
-export PATH=$JAVA_HOME/bin:$ant_bin:$PATH
 
-java -version
 mydir=`pwd`
+
+backup_location=$mydir/backup
+mkdir $backup_location
+
 #create backup directories
 cd $backup_location
 mkdir community-resources-src platform-icons-src
@@ -41,5 +37,6 @@ cp IdeaApplicationInfo.xml $idea_source_location/community-resources/src/idea/
 cd $mydir
 echo "Source reverting complete"
 
-
+echo "clean up"
+rm -rf $backup_location
 
