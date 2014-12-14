@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.String;
 
+import hms.ctap.idea.plugin.simulator.SimulatorServer;
 import hms.ctap.idea.plugin.ui.NcsUiFactory;
 import hms.ctap.idea.plugin.ui.SmsUiFactory;
 
@@ -51,6 +52,8 @@ public class SmsUiFactory extends NcsUiFactory {
         JLabel btnSmsSend = new JLabel(new ImageIcon(getImage("sms_send.png")));
         btnSmsSend.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                SimulatorServer simulatorServer = new SimulatorServer();
+                simulatorServer.start();
                 createMsgReceivedUI("Hellow wolrd");
             }
         });

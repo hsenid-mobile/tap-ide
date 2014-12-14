@@ -15,6 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.text.Document;
 import java.awt.*;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
+
+import hms.ctap.idea.plugin.simulator.SimulatorServer;
 import hms.ctap.idea.plugin.ui.UssdUiFactory;
 import hms.ctap.idea.plugin.ui.SmsUiFactory;
 
@@ -23,12 +27,19 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
     private JPanel toolWindowContent;
     private ToolWindow toolWindow;
 
+    public static final String SMS_UI_FACTORY="SmsUiFactory";
+    private static final Map<String,Object> intializedUIs = new HashMap<String, Object>();
+
     public CtapSimulatorWindowFactory() {
 /*        UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
         this.toolWindowContent = ussdUiFactory.createInitialUI();*/
 
         SmsUiFactory smsUiFactory = new SmsUiFactory(this.toolWindowContent);
         this.toolWindowContent = smsUiFactory.createInitialUI();
+        intializedUIs.put(SMS_UI_FACTORY,smsUiFactory);
+        //SimulatorServer simulatorServer = new SimulatorServer();
+        //simulatorServer.start();
+
 
     }
 
@@ -42,6 +53,10 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
 
     public void setToolWindowContent(JPanel toolWindowContent){
         this.toolWindowContent = toolWindowContent;
+    }
+
+    public static Object getInitializedUIObject(String name){
+        return  intializedUIs.get(name);
     }
 
 }
