@@ -11,9 +11,9 @@ public class ConfigUtil {
     private static final Properties messageProperties = new Properties();
     static {
         try {
-            applicationProperties.load(new FileReader(ConfigUtil.class.getClassLoader().getResource("application.properties").getFile()));
-            messageProperties.load(new FileReader(ConfigUtil.class.getClassLoader().getResource("messages.properties").getFile()));
-        } catch (IOException e) {
+            applicationProperties.load(new FileReader(ConfigUtil.class.getResource("/resources/application.properties").getFile()));
+            messageProperties.load(new FileReader(ConfigUtil.class.getResource("/resources/messages.properties").getFile()));	
+	} catch (IOException e) {
             e.printStackTrace();
         }
     }
