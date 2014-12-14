@@ -23,16 +23,17 @@ We have started the project in great means of creating fully fledge framework sp
 
 + [ ] Providing application templates, for project creation wizard
 + [ ] Full scale simulator for testing.
-    + [x] Multiple mobile phones simulation (Multiple inboxes)
-    + [x] SMS simulation
+    + [ ] Multiple mobile phones simulation (Multiple inboxes)
+    + [ ] SMS simulation
     + [ ] USSD simulation
     + [ ] CAS simulation
     + [ ] Subscription simulation
     + [ ] LBS simulation
-    + [x] Saving application preferences.
+    + [ ] Saving application preferences.
     + [ ] 10 Tps load test/test results
 + [ ] IRC integration for developer support.
-+ [x] Drag and drop, code generation for ussd based application.
++ [ ] Drag and drop, code generation for ussd based application.
++ [x] Create an ant task to build intellij IDEA community edition (max, win, linux) with hsenid brandings including the plugin. (Should not modify the community edition source code)
 
 ## Links
 
