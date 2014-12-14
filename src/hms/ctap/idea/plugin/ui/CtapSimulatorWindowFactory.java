@@ -16,6 +16,7 @@ import javax.swing.text.Document;
 import java.awt.*;
 import java.lang.String;
 import hms.ctap.idea.plugin.ui.UssdUiFactory;
+import hms.ctap.idea.plugin.ui.SmsUiFactory;
 
 public class CtapSimulatorWindowFactory implements ToolWindowFactory {
 
@@ -23,8 +24,12 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
     private ToolWindow toolWindow;
 
     public CtapSimulatorWindowFactory() {
-         UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
-         this.toolWindowContent = ussdUiFactory.createInitialUI();
+/*        UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
+        this.toolWindowContent = ussdUiFactory.createInitialUI();*/
+
+        SmsUiFactory smsUiFactory = new SmsUiFactory(this.toolWindowContent);
+        this.toolWindowContent = smsUiFactory.createInitialUI();
+
     }
 
     public void createToolWindowContent(Project project, ToolWindow toolWindow) {

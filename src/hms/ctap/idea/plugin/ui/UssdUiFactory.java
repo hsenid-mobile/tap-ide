@@ -1,7 +1,6 @@
 package hms.ctap.idea.plugin.ui;
 
 import javax.swing.*;
-import javax.swing.JPanel;
 import javax.swing.text.Document;
 import java.lang.Exception;
 import java.net.URL;
@@ -33,7 +32,6 @@ public class UssdUiFactory extends NcsUiFactory {
 
         JLabel topIcons = new JLabel(new ImageIcon(getImage("top.png")));
         elementContainer.add(topIcons);
-
 
         //Key pad elements
         GridBagLayout keyPadLayout = new GridBagLayout();
