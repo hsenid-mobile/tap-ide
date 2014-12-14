@@ -48,10 +48,17 @@ public class SmsUiFactory extends NcsUiFactory {
         addressText.setPreferredSize(new Dimension(180,20));
         addressText.setLineWrap(true);
 
+        JLabel btnSmsSend = new JLabel(new ImageIcon(getImage("sms_send.png")));
+        btnSmsSend.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                createMsgReceivedUI("Hellow wolrd");
+            }
+        });
 
         addressBox.add(addressText);
         msgBox.add(msgText);
 
+        elementContainer.add(btnSmsSend);
         elementContainer.add(addressBox);
         elementContainer.add(msgBox);
         elementContainer.add(smsBg);
@@ -64,6 +71,8 @@ public class SmsUiFactory extends NcsUiFactory {
         bgLayout.putConstraint(SpringLayout.NORTH,msgBox,210,SpringLayout.NORTH,phoneImage);
         bgLayout.putConstraint(SpringLayout.WEST,addressBox,188,SpringLayout.WEST,phoneImage);
         bgLayout.putConstraint(SpringLayout.NORTH,addressBox,175,SpringLayout.NORTH,phoneImage);
+        bgLayout.putConstraint(SpringLayout.WEST,btnSmsSend,378,SpringLayout.WEST,phoneImage);
+        bgLayout.putConstraint(SpringLayout.NORTH,btnSmsSend,243,SpringLayout.NORTH,phoneImage);
 
 
 
@@ -74,7 +83,7 @@ public class SmsUiFactory extends NcsUiFactory {
 
     }
 
-    public JPanel createUserResponseUI(String message) {
+    public JPanel createMsgReceivedUI(String message) {
 
         elementContainer.removeAll();
 
@@ -89,7 +98,11 @@ public class SmsUiFactory extends NcsUiFactory {
         responseText.setBackground(new Color(29,46,60));
 
         JButton btnOK = new JButton("OK");
-
+        btnOK.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                createInitialUI();
+            }
+        });
         responseBox.add(btnOK,BorderLayout.SOUTH);
         responseBox.setBackground(new Color(29,46,60));
         responseBox.add(responseText);
