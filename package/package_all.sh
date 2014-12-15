@@ -20,6 +20,7 @@ if [ ! -z   "$JAVA_HOME" ]
 then
        	echo "Your java home is set to $JAVA_HOME"
 	echo `java -version`
+	export PATH=$JAVA_HOME/bin:$PATH
 else
 	echo ""
         echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -33,6 +34,7 @@ if [ ! -z   "$ANT_HOME" ]
 then
        	echo "Your ant home is set to $ANT_HOME"
 	echo `ant -version`
+	export PATH=$ANT_HOME/bin:$PATH
 else
 	echo ""
         echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
