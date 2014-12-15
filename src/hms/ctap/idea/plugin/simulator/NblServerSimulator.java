@@ -5,31 +5,42 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import hms.ctap.idea.plugin.ui.SmsUiFactory;
 
 import java.io.*;
 import java.net.InetSocketAddress;
+import java.util.Observable;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class NblServerSimulator {
 
+
     private static final Queue<String> messageQueue = new ConcurrentLinkedQueue<String>();
 
-    public NblServerSimulator() throws IOException {
+    private SmsUiFactory smsUiFactory;
+
+    public NblServerSimulator(SmsUiFactory smsUiFactory) throws IOException {
+        this.smsUiFactory = smsUiFactory;
         HttpServer server = HttpServer.create(new InetSocketAddress(7000), 0);
-        server.createContext("/sms/send", new MyHandler());
+        server.createContext("/sms/send", new MyHandler(smsUiFactory));
         server.setExecutor(null); // creates a default executor
         server.start();
     }
 
     static class MyHandler implements HttpHandler {
+        private SmsUiFactory smsUiFactory;
+
+        public MyHandler(SmsUiFactory smsUiFactory) {
+            this.smsUiFactory = smsUiFactory;
+        }
+
         public void handle(HttpExchange t) throws IOException {
             String request = CharStreams.toString(new InputStreamReader(t.getRequestBody()));
 
             Gson gson = new Gson();
             SmsMtRequestMessage smsMtRequestMessage = gson.fromJson(request, SmsMtRequestMessage.class);
-
-            messageQueue.add(smsMtRequestMessage.getMessage());
+            smsUiFactory.createMsgReceivedUI(smsMtRequestMessage.getMessage());
 
             String response = "{\n" +
                     "  \"statusCode\": \"S1000\",\n" +

@@ -36,8 +36,8 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
         intializedUIs.put(SMS_UI_FACTORY, smsUiFactory);
 
         try {
-            final NblServerSimulator nblServerSimulator = new NblServerSimulator();
-            Thread thread = new Thread(new Runnable() {
+            final NblServerSimulator nblServerSimulator = new NblServerSimulator(smsUiFactory);
+            /*Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (true) {
@@ -54,7 +54,7 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
                     }
                 }
             });
-            thread.start();
+            thread.start();*/
 
         } catch (IOException e) {
             e.printStackTrace();
