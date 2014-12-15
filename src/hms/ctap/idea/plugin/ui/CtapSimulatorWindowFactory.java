@@ -20,10 +20,18 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
     private ToolWindow toolWindow;
 
     public CtapSimulatorWindowFactory() {
-/*        UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
+    }
+
+
+    public static Object getInitializedUIObject(String name) {
+        return intializedUIs.get(name);
+    }
+
+    public void createToolWindowContent(Project project, ToolWindow toolWindow) {
+        /*        UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
         this.toolWindowContent = ussdUiFactory.createInitialUI();*/
 
-        final SmsUiFactory smsUiFactory = new SmsUiFactory(this.toolWindowContent);
+        final SmsUiFactory smsUiFactory = new SmsUiFactory(this.toolWindowContent, project);
         this.toolWindowContent = smsUiFactory.createInitialUI();
         intializedUIs.put(SMS_UI_FACTORY, smsUiFactory);
 
@@ -51,13 +59,8 @@ public class CtapSimulatorWindowFactory implements ToolWindowFactory {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    public static Object getInitializedUIObject(String name) {
-        return intializedUIs.get(name);
-    }
 
-    public void createToolWindowContent(Project project, ToolWindow toolWindow) {
         this.toolWindow = toolWindow;
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(toolWindowContent, "", false);

@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class NblServerSimulator {
 
-    private Queue<String> messageQueue = new ConcurrentLinkedQueue<String>();
+    private static final Queue<String> messageQueue = new ConcurrentLinkedQueue<String>();
 
     public NblServerSimulator() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(7000), 0);
@@ -28,7 +28,8 @@ public class NblServerSimulator {
 
             Gson gson = new Gson();
             SmsMtRequestMessage smsMtRequestMessage = gson.fromJson(request, SmsMtRequestMessage.class);
-            System.out.println(smsMtRequestMessage.getMessage());
+
+            messageQueue.add(smsMtRequestMessage.getMessage());
 
             String response = "{\n" +
                     "  \"statusCode\": \"S1000\",\n" +
@@ -38,7 +39,7 @@ public class NblServerSimulator {
                     "    {\n" +
                     "      \"statusCode\": \"S1000\",\n" +
                     "      \"timeStamp\": \"20130731110954\",\n" +
-                    "      \"address\": \"tel: 947712345678\",\n" +
+                    "      \"address\": \"tel:947712345678\",\n" +
                     "      \"statusDetail\": \"Request was successfully processed\",\n" +
                     "      \"messageId\": \"101307311109540017\"\n" +
                     "    }\n" +

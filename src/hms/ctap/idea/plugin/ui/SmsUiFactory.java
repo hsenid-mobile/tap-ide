@@ -1,15 +1,32 @@
 package hms.ctap.idea.plugin.ui;
 
+import com.google.gson.Gson;
+import com.intellij.openapi.project.Project;
+import hms.kite.samples.api.GenericSender;
+import hms.kite.samples.api.sms.messages.MoSmsReq;
+import hms.kite.samples.api.sms.messages.MtSmsResp;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.MessageFormat;
 
 public class SmsUiFactory extends NcsUiFactory {
 
 
-    public SmsUiFactory(JPanel toolWindowContent) {
+    private final Project project;
+
+    public SmsUiFactory(JPanel toolWindowContent, Project project) {
         super(toolWindowContent);
+        this.project = project;
     }
 
     public JPanel createInitialUI() {
@@ -21,7 +38,7 @@ public class SmsUiFactory extends NcsUiFactory {
         JPanel msgBox = new JPanel();
         msgBox.setBackground(Color.BLACK);
 
-        JTextArea msgText = new JTextArea(6, 12);
+        final JTextArea msgText = new JTextArea(6, 12);
         Font font = new Font("Verdana", Font.BOLD, 12);
         msgText.setFont(font);
         msgText.setBackground(Color.BLACK);
@@ -44,7 +61,43 @@ public class SmsUiFactory extends NcsUiFactory {
         JLabel btnSmsSend = new JLabel(new ImageIcon(getImage("sms_send.png")));
         btnSmsSend.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                createMsgReceivedUI("Hellow wolrd");
+                String appPath = "http://localhost" + ":" + "8080" + "/" + project.getName() + "/mo-receiver";
+                try {
+                    Object response = null;
+
+                    String requestFormat = "{\n" +
+                            "\"message\": \""+ msgText.getText() +"\",\n" +
+                            "\"requestId\":\"51307311302350037\",\n" +
+                            "\"applicationId\":\"APP_000006\",\n" +
+                            "\"sourceAddress\":\"tel:947712345678\",\n" +
+                            "\"version\":\"1.0\",\n" +
+                            "\"encoding\":\"0\"\n" +
+                            "}";
+
+                    Gson gson = new Gson();
+                    URL url = new URL(appPath);
+                    URLConnection urlConnection = url.openConnection();
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestProperty("Content-Type", "application/json");
+                    urlConnection.setRequestProperty("Accept", "application/json");
+                    OutputStreamWriter connection1 = new OutputStreamWriter(urlConnection.getOutputStream());
+                    connection1.write(requestFormat);
+                    connection1.flush();
+                    BufferedReader wr1 = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    StringBuilder rd1 = new StringBuilder();
+
+                    String content1;
+                    while((content1 = wr1.readLine()) != null) {
+                        rd1.append(content1);
+                        rd1.append("\n");
+                    }
+                    connection1.close();
+                    wr1.close();
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
