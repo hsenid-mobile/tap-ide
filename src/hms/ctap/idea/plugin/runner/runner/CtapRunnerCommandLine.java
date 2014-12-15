@@ -33,8 +33,8 @@ public class CtapRunnerCommandLine extends JavaCommandLineState {
         this.model = model;
     }
 
-    @Override
-    public JavaParameters createJavaParameters() throws ExecutionException {
+    @Override    public JavaParameters createJavaParameters() throws ExecutionException {
+
         JavaParameters javaParams = new JavaParameters();
         // Use the same JDK as the project
         Project project = this.environment.getProject();
