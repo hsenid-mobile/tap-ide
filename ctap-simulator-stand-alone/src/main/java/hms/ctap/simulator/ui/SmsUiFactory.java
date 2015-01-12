@@ -1,6 +1,8 @@
 package hms.ctap.simulator.ui;
 
 import com.google.gson.Gson;
+import hms.ctap.simulator.NotifyUI;
+import hms.ctap.simulator.SimulatorServer;
 import hms.kite.samples.api.sms.messages.MoSmsReq;
 import hms.kite.samples.api.sms.messages.MtSmsResp;
 
@@ -17,8 +19,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.MessageFormat;
 
-public class SmsUiFactory extends NcsUiFactory {
+public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
 
+    public  static final String SMS_UI_FACTORY = "SmsUiFactory";
 
     public SmsUiFactory(JPanel toolWindowContent) {
         super(toolWindowContent);
@@ -56,7 +59,7 @@ public class SmsUiFactory extends NcsUiFactory {
         JLabel btnSmsSend = new JLabel(new ImageIcon(getImage("sms_send.png")));
         btnSmsSend.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                String appPath = "http://localhost" + ":" + "8080" + "/" + "smsSample" + "/mo-receiver";
+                String appPath = "http://localhost:8080/sample-app/moReceiver";
                 try {
                     Object response = null;
 
@@ -88,11 +91,14 @@ public class SmsUiFactory extends NcsUiFactory {
                     }
                     connection1.close();
                     wr1.close();
+                    System.out.println("Sms message sent to application.....");
                 } catch (MalformedURLException e1) {
                     e1.printStackTrace();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
+
+
             }
         });
 
@@ -118,6 +124,8 @@ public class SmsUiFactory extends NcsUiFactory {
 
         elementContainer.revalidate();
         elementContainer.repaint();
+
+        SimulatorServer.getNotifyUis().add(this);
 
         return elementContainer;
 
@@ -167,4 +175,8 @@ public class SmsUiFactory extends NcsUiFactory {
 
     }
 
+    @Override
+    public void notify(String Message) {
+        createMsgReceivedUI(Message);
+    }
 }

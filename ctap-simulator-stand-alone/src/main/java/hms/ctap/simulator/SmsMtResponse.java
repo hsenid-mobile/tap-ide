@@ -1,15 +1,17 @@
 package hms.ctap.simulator;
 
+import java.util.List;
+
 public class SmsMtResponse {
 
 	private String version;
 	private String requestId;
 	private String statusCode;
 	private String statusDetail;
-	private String destinationResponses;
+	private List<DestinationResponse> destinationResponses;
 
 	public SmsMtResponse(String version, String requestId, String statusCode, String statusDetail,
-			String destinationResponses) {
+						 List<DestinationResponse> destinationResponses) {
 		super();
 		this.version = version;
 		this.requestId = requestId;
@@ -50,11 +52,11 @@ public class SmsMtResponse {
 		this.statusDetail = statusDetail;
 	}
 
-	public String getDestinationResponses() {
+	public List<DestinationResponse> getDestinationResponses() {
 		return destinationResponses;
 	}
 
-	public void setDestinationResponses(String destinationResponses) {
+	public void setDestinationResponses(List<DestinationResponse> destinationResponses) {
 		this.destinationResponses = destinationResponses;
 	}
 
