@@ -59,7 +59,7 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
         JLabel btnSmsSend = new JLabel(new ImageIcon(getImage("sms_send.png")));
         btnSmsSend.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                String appPath = "http://localhost:8080/sample-app/moReceiver";
+                String appPath = "http://localhost:8098/ada.dawasa/ideamart-message-receiver";
                 try {
                     Object response = null;
 

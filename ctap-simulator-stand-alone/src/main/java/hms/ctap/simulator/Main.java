@@ -3,9 +3,7 @@ package hms.ctap.simulator;
 import javax.swing.*;
 
 import hms.ctap.simulator.ui.SmsUiFactory;
-import hms.ctap.simulator.NblServerSimulator;
 
-import java.io.*;
 
 import java.awt.*;
 
