@@ -23,6 +23,7 @@ public class Main extends JFrame {
                 applicationURLLabel.setText(applicationDropDown.getSelectedItem().toString());
             }
         });
+        applicationDropDown.setEditable(true);
         applicationDropDown.setPreferredSize(new Dimension(500,20));
 
         SpringLayout bottomLayerLayout = new SpringLayout();
