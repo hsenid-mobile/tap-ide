@@ -32,9 +32,8 @@ public class Main extends JFrame {
 
         bottomLayer.add(appListLable,BorderLayout.WEST);
         bottomLayer.add(applicationDropDown);
-//        bottomLayer.add(applicationURLLabel,BorderLayout.WEST);
-
-//        bottomLayerLayout.putConstraint(SpringLayout.WEST, applicationDropDown, 200, SpringLayout.WEST, appListLable);
+//      bottomLayer.add(applicationURLLabel,BorderLayout.WEST);
+//      bottomLayerLayout.putConstraint(SpringLayout.WEST, applicationDropDown, 200, SpringLayout.WEST, appListLable);
 
 
         Container pane = getContentPane();
@@ -42,8 +41,12 @@ public class Main extends JFrame {
         pane.add(bottomLayer,BorderLayout.SOUTH);
 
 
+        ImageIcon icon = new ImageIcon ( Toolkit.getDefaultToolkit().getImage(getClass().getResource("/ctap-simulator/images/hms_logo.jpg")));
+        setIconImage(icon.getImage());
+
         setTitle("hSenid Mobile - CTAP Simulator");
         setSize(600, 680);
+        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
