@@ -27,6 +27,8 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
         super(toolWindowContent);
     }
 
+    private String applicationPath = "http://localhost:8098/ada.dawasa/ideamart-message-receiver";
+
     public JPanel createInitialUI() {
 
         elementContainer.removeAll();
@@ -59,7 +61,6 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
         JLabel btnSmsSend = new JLabel(new ImageIcon(getImage("sms_send.png")));
         btnSmsSend.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                String appPath = "http://localhost:8098/ada.dawasa/ideamart-message-receiver";
                 try {
                     Object response = null;
 
@@ -73,7 +74,7 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
                             "}";
 
                     Gson gson = new Gson();
-                    URL url = new URL(appPath);
+                    URL url = new URL(applicationPath);
                     URLConnection urlConnection = url.openConnection();
                     urlConnection.setDoOutput(true);
                     urlConnection.setRequestProperty("Content-Type", "application/json");
@@ -129,6 +130,10 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
 
         return elementContainer;
 
+    }
+
+    public void setApplicationPath(String applicationPath) {
+        this.applicationPath = applicationPath;
     }
 
     public JPanel createMsgReceivedUI(String message) {

@@ -1,10 +1,14 @@
 package hms.ctap.simulator;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
+
 import hms.ctap.simulator.ui.SmsUiFactory;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Main extends JFrame {
     static SmsUiFactory smsUiFactory;
@@ -18,11 +22,24 @@ public class Main extends JFrame {
 
         String[] applicationList = {"SMS: http://localhost:8080/helloWord","USSD: http://localhost:8081/helloWord-"};
         final JComboBox applicationDropDown = new JComboBox(applicationList);
-        applicationDropDown.addActionListener (new ActionListener() {
+        applicationDropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                applicationURLLabel.setText(applicationDropDown.getSelectedItem().toString());
+                smsUiFactory.setApplicationPath(applicationDropDown.getSelectedItem().toString());
+                System.out.println(applicationDropDown.getSelectedItem().toString());
             }
         });
+
+        applicationDropDown.getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent event) {
+                String newUrl = ((JTextComponent) ((JComboBox) ((Component) event
+                        .getSource()).getParent()).getEditor()
+                        .getEditorComponent()).getText();
+                System.out.println(newUrl);
+                smsUiFactory.setApplicationPath(newUrl);
+                }
+        });
+
         applicationDropDown.setEditable(true);
         applicationDropDown.setPreferredSize(new Dimension(500,20));
 
@@ -41,7 +58,7 @@ public class Main extends JFrame {
         pane.add(bottomLayer,BorderLayout.SOUTH);
 
 
-        ImageIcon icon = new ImageIcon ( Toolkit.getDefaultToolkit().getImage(getClass().getResource("/ctap-simulator/images/hms_logo.jpg")));
+        ImageIcon icon = new ImageIcon (Toolkit.getDefaultToolkit().getImage(getClass().getResource("/ctap-simulator/images/hms_logo.jpg")));
         setIconImage(icon.getImage());
 
         setTitle("hSenid Mobile - CTAP Simulator");
