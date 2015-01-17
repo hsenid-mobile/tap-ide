@@ -15,8 +15,8 @@ public class AppListComboRenderer implements ListCellRenderer{
         label.setOpaque(true);
 
         String[] splitedValues = value.toString().split("\\$\\$");
-//        System.out.println(splitedValues[0]+"|"+splitedValues[1]);
-        if (splitedValues[0].equals("sms")){
+        System.out.println(splitedValues[0]+"|"+splitedValues[1]);
+        if (splitedValues[0].equals("SMS")){
             label.setIcon(new ImageIcon(getImage("sms.png")));
         } else {
             label.setIcon(new ImageIcon(getImage("ussd.png")));
