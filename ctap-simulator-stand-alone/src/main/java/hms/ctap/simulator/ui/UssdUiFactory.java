@@ -17,7 +17,7 @@ public class UssdUiFactory extends NcsUiFactory {
 
         elementContainer.removeAll();
 
-        displayTextArea = new JTextArea("", 1, 30);
+        displayTextArea = new JTextArea("",1,10);
         Font font = new Font("Verdana", Font.BOLD, 25);
         displayTextArea.setFont(font);
         displayTextArea.setLineWrap(true);

@@ -6,25 +6,29 @@ import javax.swing.text.JTextComponent;
 
 import hms.ctap.simulator.ui.AppListComboRenderer;
 import hms.ctap.simulator.ui.SmsUiFactory;
+import hms.ctap.simulator.ui.UssdUiFactory;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
 
 public class Main extends JFrame implements MainMBean {
     static SmsUiFactory smsUiFactory;
+    static UssdUiFactory ussdUiFactory;
     private String applicationURL;
     private JLabel applicationURLLabel;
     private JComboBox applicationDropDown;
+    private Container contentPane;
+    private JPanel bottomLayer = new JPanel();
 
     public Main() {
         this.applicationURLLabel = new JLabel("Hello world");
-        JPanel contentPanel = new JPanel();
+        final JPanel contentPanel = new JPanel();
         smsUiFactory = new SmsUiFactory(contentPanel);
-        String[] applicationList = {"SMS$$http://localhost:8080/sms/helloWorld"};
+        ussdUiFactory = new UssdUiFactory(contentPanel);
+
+        String[] applicationList = {"NONE$$- No running application detected -"};
         applicationDropDown = new JComboBox(applicationList);
 
         applicationDropDown.setRenderer(new AppListComboRenderer());
@@ -32,21 +36,37 @@ public class Main extends JFrame implements MainMBean {
         applicationDropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String[] splitedValues = applicationDropDown.getSelectedItem().toString().split("\\$\\$");
-                smsUiFactory.setApplicationPath(splitedValues[1]);
+                if (splitedValues[0].equals("SMS")) {
+                    contentPane.removeAll();
+                    smsUiFactory.setApplicationPath(splitedValues[1]);
+                    contentPane.add(smsUiFactory.createInitialUI());
+                    contentPane.add(bottomLayer,BorderLayout.SOUTH);
+                    contentPane.revalidate();
+                    contentPane.repaint();
+                } else if(splitedValues[0].equals("USSD")) {
+                    contentPane.removeAll();
+                    ussdUiFactory.setApplicationPath(splitedValues[1]);
+                    contentPane.add(ussdUiFactory.createInitialUI());
+                    contentPane.add(bottomLayer,BorderLayout.SOUTH);
+                    contentPane.revalidate();
+                    contentPane.repaint();
+                }
+
                 System.out.println("Selected app url - " +splitedValues[1]);
             }
         });
 
         applicationDropDown.setPreferredSize(new Dimension(590, 45));
 
-        JPanel bottomLayer = new JPanel();
+
 //        JLabel appListLable = new JLabel("APPS");
 //        bottomLayer.add(appListLable,BorderLayout.WEST);
         bottomLayer.add(applicationDropDown);
 
-        Container pane = getContentPane();
-        pane.add(smsUiFactory.createInitialUI());
-        pane.add(bottomLayer,BorderLayout.SOUTH);
+        contentPane = getContentPane();
+//        contentPane.add(smsUiFactory.createInitialUI());
+        contentPane.add(ussdUiFactory.createInitialUI());
+        contentPane.add(bottomLayer,BorderLayout.SOUTH);
 
         ImageIcon icon = new ImageIcon(getImage("hms_logo.png"));
         setIconImage(icon.getImage());

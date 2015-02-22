@@ -18,8 +18,10 @@ public class AppListComboRenderer implements ListCellRenderer{
         System.out.println(splitedValues[0]+"|"+splitedValues[1]);
         if (splitedValues[0].equals("SMS")){
             label.setIcon(new ImageIcon(getImage("sms.png")));
-        } else {
+        } else if(splitedValues[0].equals("USSD")) {
             label.setIcon(new ImageIcon(getImage("ussd.png")));
+        } else {
+            label.setIcon(new ImageIcon(getImage("info.png")));
         }
         label.setText(splitedValues[1]);
         return label;

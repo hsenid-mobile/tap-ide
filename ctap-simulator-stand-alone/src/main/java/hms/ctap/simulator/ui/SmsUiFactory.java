@@ -27,8 +27,6 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
         super(toolWindowContent);
     }
 
-    private String applicationPath = "http://localhost:8098/ada.dawasa/ideamart-message-receiver";
-
     public JPanel createInitialUI() {
 
         elementContainer.removeAll();
@@ -130,10 +128,6 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
 
         return elementContainer;
 
-    }
-
-    public void setApplicationPath(String applicationPath) {
-        this.applicationPath = applicationPath;
     }
 
     public JPanel createMsgReceivedUI(String message) {

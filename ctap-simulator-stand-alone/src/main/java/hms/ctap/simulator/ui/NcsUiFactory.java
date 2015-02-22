@@ -10,6 +10,7 @@ public class NcsUiFactory {
     JPanel toolWindowContent;
     JPanel elementContainer;
     JLabel phoneImage;
+    String applicationPath;
 
     public NcsUiFactory(JPanel toolWindowContent) {
         this.toolWindowContent = toolWindowContent;
@@ -22,8 +23,8 @@ public class NcsUiFactory {
         return getClass().getResource("/ctap-simulator/images/" + imageName);
     }
 
-    public void setToolWindowContent(JPanel toolWindowContent) {
-        this.toolWindowContent = toolWindowContent;
+    public void setApplicationPath(String applicationPath) {
+        this.applicationPath = applicationPath;
     }
 
 
