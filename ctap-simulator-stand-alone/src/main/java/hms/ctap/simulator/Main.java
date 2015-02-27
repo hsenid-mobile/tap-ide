@@ -2,8 +2,6 @@ package hms.ctap.simulator;
 
 import javax.management.*;
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
-
 import hms.ctap.simulator.ui.AppListComboRenderer;
 import hms.ctap.simulator.ui.SmsUiFactory;
 import hms.ctap.simulator.ui.UssdUiFactory;
@@ -16,26 +14,41 @@ import java.net.URL;
 public class Main extends JFrame implements MainMBean {
     static SmsUiFactory smsUiFactory;
     static UssdUiFactory ussdUiFactory;
-    private String applicationURL;
-    private JLabel applicationURLLabel;
-    private JComboBox applicationDropDown;
+    private JComboBox applicationListDropDown;
+    private boolean isApplicationDropDownEmpty=true;
     private Container contentPane;
     private JPanel bottomLayer = new JPanel();
 
     public Main() {
-        this.applicationURLLabel = new JLabel("Hello world");
         final JPanel contentPanel = new JPanel();
         smsUiFactory = new SmsUiFactory(contentPanel);
         ussdUiFactory = new UssdUiFactory(contentPanel);
+        applicationListDropDown = createApplicationListDropDown();
+        bottomLayer.add(applicationListDropDown);
+        contentPane = getContentPane();
+        contentPane.add(smsUiFactory.createInitialUI());
+        contentPane.add(bottomLayer,BorderLayout.SOUTH);
+        ImageIcon icon = new ImageIcon(getImage("hms_logo.png"));
+        setIconImage(icon.getImage());
+        setTitle("hSenid Mobile - CTAP Simulator");
+        setSize(600, 660);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
 
+    private URL getImage(String imageName) {
+        return getClass().getResource("/ctap-simulator/images/" + imageName);
+    }
+
+    private JComboBox createApplicationListDropDown() {
         String[] applicationList = {"NONE$$- No running application detected -"};
-        applicationDropDown = new JComboBox(applicationList);
-
-        applicationDropDown.setRenderer(new AppListComboRenderer());
-
-        applicationDropDown.addActionListener(new ActionListener() {
+        DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(applicationList);
+        final JComboBox appDropDown = new JComboBox(comboBoxModel);
+        appDropDown.setRenderer(new AppListComboRenderer());
+        appDropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String[] splitedValues = applicationDropDown.getSelectedItem().toString().split("\\$\\$");
+                String[] splitedValues = appDropDown.getSelectedItem().toString().split("\\$\\$");
                 if (splitedValues[0].equals("SMS")) {
                     contentPane.removeAll();
                     smsUiFactory.setApplicationPath(splitedValues[1]);
@@ -55,30 +68,8 @@ public class Main extends JFrame implements MainMBean {
                 System.out.println("Selected app url - " +splitedValues[1]);
             }
         });
-
-        applicationDropDown.setPreferredSize(new Dimension(590, 45));
-
-
-//        JLabel appListLable = new JLabel("APPS");
-//        bottomLayer.add(appListLable,BorderLayout.WEST);
-        bottomLayer.add(applicationDropDown);
-
-        contentPane = getContentPane();
-//        contentPane.add(smsUiFactory.createInitialUI());
-        contentPane.add(ussdUiFactory.createInitialUI());
-        contentPane.add(bottomLayer,BorderLayout.SOUTH);
-
-        ImageIcon icon = new ImageIcon(getImage("hms_logo.png"));
-        setIconImage(icon.getImage());
-        setTitle("hSenid Mobile - CTAP Simulator");
-        setSize(600, 660);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-    private URL getImage(String imageName) {
-        return getClass().getResource("/ctap-simulator/images/" + imageName);
+        appDropDown.setPreferredSize(new Dimension(590, 45));
+        return appDropDown;
     }
 
     public static void main(String[] args) throws Exception {
@@ -88,7 +79,6 @@ public class Main extends JFrame implements MainMBean {
                 Main mainApp = new Main();
                 ObjectName name;
                 MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
-
                 try {
                     name = new ObjectName("hms.ctap.simulator:type=Main");
                     mbs.registerMBean(mainApp, name);
@@ -104,15 +94,28 @@ public class Main extends JFrame implements MainMBean {
                 mainApp.setVisible(true);
             }
         });
-
         SimulatorServer simulatorServer = new SimulatorServer();
         simulatorServer.start();
     }
 
-    @Override
-    public void addApplication(String type, String urlString) {
-        this.applicationDropDown.addItem(type+"$$"+urlString);
+    private boolean isAppItemAlreadyExists(String applicationItem){
+        return ((DefaultComboBoxModel) this.applicationListDropDown.getModel()).getIndexOf(applicationItem)!=-1;
     }
 
-
+    @Override
+    public void addApplication(String type, String urlString) {
+        String applicationItem = type + "$$" + urlString;
+        if (this.isApplicationDropDownEmpty){
+            if (! isAppItemAlreadyExists(applicationItem)){
+                this.applicationListDropDown.insertItemAt(applicationItem, 0);
+                this.applicationListDropDown.removeItemAt(1);
+                this.isApplicationDropDownEmpty=false;
+            }
+        } else {
+            if (! isAppItemAlreadyExists(applicationItem)){
+                this.applicationListDropDown.insertItemAt(applicationItem, 0);
+            }
+        }
+        this.applicationListDropDown.setSelectedIndex(0);
+    }
 }
