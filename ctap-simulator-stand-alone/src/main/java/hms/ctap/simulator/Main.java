@@ -118,4 +118,14 @@ public class Main extends JFrame implements MainMBean {
         }
         this.applicationListDropDown.setSelectedIndex(0);
     }
+
+    @Override
+    public void terminate(){
+        System.exit(0);
+    }
+
+    @Override
+    public String checkHeartBeat(String msg) {
+        return msg;
+    }
 }

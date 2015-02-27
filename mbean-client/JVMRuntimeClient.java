@@ -29,7 +29,17 @@ public class JVMRuntimeClient {
         MainMBean mbeanProxy = JMX.newMBeanProxy(remote,mbeanName,MainMBean.class,true);
 
         System.out.println("invoking");
-        mbeanProxy.addApplication(args[0],args[1]);
+	switch(args[0]){
+		case "add" :
+        	mbeanProxy.addApplication(args[1],args[2]);
+		break;
+		case "echo" :
+		System.out.println(mbeanProxy.checkHeartBeat(args[1]));
+		break;
+		case "terminate":
+		mbeanProxy.terminate();
+		break;	
+	}
     }
     catch(Exception e)
     {
