@@ -10,38 +10,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Path("sms")
-public class SmsNcsRestService {
-    private static final Logger LOGGER = Logger.getLogger(SmsNcsRestService.class.getName());
+@Path("ussd")
+public class UssdNcsRestService {
+    private static final Logger LOGGER = Logger.getLogger(UssdNcsRestService.class.getName());
 
 
     @POST
     @Path("send")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response sendService(SmsMtRequestMessage smsMtRequestMessage) {
+    public Response sendService(UssdMtRequestMessage ussdMtRequestMessage) {
 
 
-        LOGGER.info("Received message :- " + smsMtRequestMessage);
+        LOGGER.info("Received message :- " + ussdMtRequestMessage);
 
         List<DestinationResponse> destinationResponses = new ArrayList<DestinationResponse>();
-        for (String address : smsMtRequestMessage.getDestinationAddresses()) {
+        String address = ussdMtRequestMessage.getDestinationAddress();
             DestinationResponse destinationResponse = new DestinationResponse();
             destinationResponse.setAddress(address);
             destinationResponse.setStatusCode("S1000");
             destinationResponse.setStatusDetail("Success");
             destinationResponse.setRequestId(String.valueOf(System.currentTimeMillis()));
+            LOGGER.info(">>"+destinationResponse.toString());
+            LOGGER.info("Ussd request>>"+ussdMtRequestMessage.toString());
 
             destinationResponses.add(destinationResponse);
-        }
 
         SmsMtResponse response = new SmsMtResponse("0.1", String.valueOf(System.currentTimeMillis()), "S1000", "Success", destinationResponses);
-        setMtMessageToUi(smsMtRequestMessage);
+        setMtMessageToUi(ussdMtRequestMessage);
 
 
         return Response.status(200).entity(response).build();
     }
 
-    private void setMtMessageToUi(SmsMtRequestMessage message) {
+    private void setMtMessageToUi(UssdMtRequestMessage message) {
         List<NotifyUI> notifyUis = SimulatorServer.getNotifyUis();
         for(NotifyUI notifyUI : notifyUis){
             notifyUI.notify(message);

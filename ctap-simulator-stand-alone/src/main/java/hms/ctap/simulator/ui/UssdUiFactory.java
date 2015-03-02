@@ -1,10 +1,21 @@
 package hms.ctap.simulator.ui;
 
+import com.google.gson.Gson;
+import hms.ctap.simulator.SimulatorServer;
+import hms.ctap.simulator.UssdMtRequestMessage;
+
 import javax.swing.*;
 import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class UssdUiFactory extends NcsUiFactory {
 
@@ -132,8 +143,8 @@ public class UssdUiFactory extends NcsUiFactory {
 
         btn14.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                sendUssdMessage(displayTextArea.getText());
                 createWaitingUI();
-//                createUserResponseUI("  Thank you for using this \n simulator..","test");
 
             }
         });
@@ -244,8 +255,51 @@ public class UssdUiFactory extends NcsUiFactory {
         elementContainer.revalidate();
         elementContainer.repaint();
 
+        SimulatorServer.getNotifyUis().add(this);
         return elementContainer;
 
+    }
+
+    private void sendUssdMessage(String message) {
+        try {
+            Object response = null;
+
+            String requestFormat = "{\n" +
+                    "\"message\": \""+ message +"\",\n" +
+                    "\"sessionId\":\"51307311302350037\",\n" +
+                    "\"requestId\":\"51307311302350037\",\n" +
+                    "\"ussdOperation\":\"mo-cont\",\n" +
+                    "\"applicationId\":\"APP_000001\",\n" +
+                    "\"sourceAddress\":\"tel:947712345678\",\n" +
+                    "\"version\":\"1.0\",\n" +
+                    "\"encoding\":\"0\"\n" +
+                    "}";
+
+            Gson gson = new Gson();
+            URL url = new URL(applicationPath);
+            URLConnection urlConnection = url.openConnection();
+            urlConnection.setDoOutput(true);
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.setRequestProperty("Accept", "application/json");
+            OutputStreamWriter connection1 = new OutputStreamWriter(urlConnection.getOutputStream());
+            connection1.write(requestFormat);
+            connection1.flush();
+            BufferedReader wr1 = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            StringBuilder rd1 = new StringBuilder();
+
+            String content1;
+            while((content1 = wr1.readLine()) != null) {
+                rd1.append(content1);
+                rd1.append("\n");
+            }
+            connection1.close();
+            wr1.close();
+            System.out.println("Ussd message sent to application.....");
+        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     public JPanel createWaitingUI() {
@@ -261,7 +315,7 @@ public class UssdUiFactory extends NcsUiFactory {
 
     }
 
-    public JPanel createUserResponseUI(String message, String ussdOperation) {
+    public JPanel createMsgReceivedUI(String message) {
 
         elementContainer.removeAll();
 
@@ -275,9 +329,37 @@ public class UssdUiFactory extends NcsUiFactory {
         responseText.setLineWrap(true);
         responseText.setBackground(new Color(29, 46, 60));
 
-        JButton btnOK = new JButton("OK");
+        JButton btnSend = new JButton("Send");
+        JButton btnCancel = new JButton("Cancel");
+        final JTextArea requestText = new JTextArea();
 
-        responseBox.add(btnOK, BorderLayout.SOUTH);
+        requestText.setFont(font);
+        requestText.setLineWrap(true);
+        requestText.setBackground(Color.black);
+        requestText.setForeground(Color.WHITE);
+        requestText.setBorder(BorderFactory.createLineBorder(Color.white));
+
+        btnSend.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                sendUssdMessage(requestText.getText());
+            }
+        });
+        btnCancel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                createInitialUI();
+            }
+        });
+
+
+        requestText.setPreferredSize(new Dimension(50,30));
+        requestText.setBackground(Color.black);
+
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.add(requestText,BorderLayout.NORTH);
+        buttonPanel.add(btnSend,BorderLayout.WEST);
+        buttonPanel.add(btnCancel,BorderLayout.EAST);
+//        responseBox.add(btnSend, BorderLayout.SOUTH);
+        responseBox.add(buttonPanel, BorderLayout.SOUTH);
         responseBox.setBackground(new Color(29, 46, 60));
         responseBox.add(responseText);
         responseText.setBackground(new Color(29, 46, 60));
@@ -297,8 +379,15 @@ public class UssdUiFactory extends NcsUiFactory {
         elementContainer.revalidate();
         elementContainer.repaint();
         return elementContainer;
+    }
 
+    @Override
+    public void notify(Object message) {
+        try{
+            createMsgReceivedUI(((UssdMtRequestMessage) message).getMessage());
+        } catch (Exception e){
 
+        }
     }
 
 }

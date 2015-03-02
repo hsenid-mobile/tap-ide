@@ -1,9 +1,8 @@
 package hms.ctap.simulator.ui;
 
 import com.google.gson.Gson;
-import hms.ctap.simulator.NotifyUI;
 import hms.ctap.simulator.SimulatorServer;
-import hms.kite.samples.api.sms.messages.MoSmsReq;
+import hms.ctap.simulator.SmsMtRequestMessage;
 import hms.kite.samples.api.sms.messages.MtSmsResp;
 
 import javax.swing.*;
@@ -19,7 +18,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.MessageFormat;
 
-public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
+public class SmsUiFactory extends NcsUiFactory  {
 
     public  static final String SMS_UI_FACTORY = "SmsUiFactory";
 
@@ -175,7 +174,11 @@ public class SmsUiFactory extends NcsUiFactory implements NotifyUI {
     }
 
     @Override
-    public void notify(String Message) {
-        createMsgReceivedUI(Message);
+    public void notify(Object message) {
+        try{
+            createMsgReceivedUI(((SmsMtRequestMessage) message).getMessage());
+        } catch (Exception e){
+
+        }
     }
 }

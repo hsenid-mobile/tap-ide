@@ -1,9 +1,11 @@
 package hms.ctap.simulator.ui;
 
+import hms.ctap.simulator.NotifyUI;
+
 import javax.swing.*;
 import java.net.URL;
 
-public class NcsUiFactory {
+public class NcsUiFactory implements NotifyUI {
 
     SpringLayout bgLayout;
     JTextArea displayTextArea;
@@ -28,4 +30,8 @@ public class NcsUiFactory {
     }
 
 
+    @Override
+    public void notify(Object Message) {
+
+    }
 }
