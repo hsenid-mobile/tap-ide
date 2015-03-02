@@ -28,7 +28,7 @@ public class UssdUiFactory extends NcsUiFactory {
 
         elementContainer.removeAll();
 
-        displayTextArea = new JTextArea("",1,10);
+        displayTextArea = new JTextArea("#771*177#",1,10);
         Font font = new Font("Verdana", Font.BOLD, 25);
         displayTextArea.setFont(font);
         displayTextArea.setLineWrap(true);
@@ -330,7 +330,9 @@ public class UssdUiFactory extends NcsUiFactory {
         responseText.setBackground(new Color(29, 46, 60));
 
         JButton btnSend = new JButton("Send");
+        btnSend.setPreferredSize(new Dimension(120, 30));
         JButton btnCancel = new JButton("Cancel");
+        btnCancel.setPreferredSize(new Dimension(120,30));
         final JTextArea requestText = new JTextArea();
 
         requestText.setFont(font);
@@ -353,6 +355,7 @@ public class UssdUiFactory extends NcsUiFactory {
 
         requestText.setPreferredSize(new Dimension(50,30));
         requestText.setBackground(Color.black);
+        requestText.setFocusable(true);
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
         buttonPanel.add(requestText,BorderLayout.NORTH);
