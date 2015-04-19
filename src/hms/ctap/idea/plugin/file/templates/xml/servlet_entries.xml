@@ -1,0 +1,15 @@
+<root>
+    <servlet>
+        <servlet-name></servlet-name>
+        <servlet-class></servlet-class>
+        <init-param>
+            <param-name></param-name>
+            <param-value></param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name></servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+</root>

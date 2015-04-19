@@ -16,12 +16,16 @@
   </project-components>
 
   <actions>
-    <!-- Add your actions here -->
+      <group id="CTAP.NewActions">
+          <separator/>
+          <action id="NewUssd" class="hms.ctap.idea.plugin.action.NewServiceClassAction"/>
+          <add-to-group anchor="after" group-id="NewGroup" relative-to-action="NewFromTemplate"/>
+      </group>
   </actions>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->                       
-     <toolWindow id="CTAP simulator"   secondary="true" icon="/general/add.png" anchor="right" factoryClass="hms.ctap.idea.plugin.ui.CtapSimulatorWindowFactory"/>         
+     <toolWindow id="CTAP simulator"  secondary="true" icon="/general/add.png" anchor="right" factoryClass="hms.ctap.idea.plugin.ui.CtapSimulatorWindowFactory"/>
      <projectTemplate projectType="CTAP Application" templatePath="resources/CTAP_SMS_Service_Application.zip" category="true"/>
      <projectTemplate projectType="CTAP Application" templatePath="resources/CTAP_USSD_Service_Application.zip" category="true"/>
      <configurationType implementation="hms.ctap.idea.plugin.runner.conf.CtapRunnerConfigurationType" />
