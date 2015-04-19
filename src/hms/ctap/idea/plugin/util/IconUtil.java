@@ -32,6 +32,8 @@ public class IconUtil {
         public static final Icon USSD_MO = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
         public static final Icon CAS_NOTIFY = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
         public static final Icon SUBSCRIPTION_NOTIFY = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
+
+        public static final Icon LBS = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/lbs.png");
     }
 
 }

@@ -21,6 +21,14 @@
           <action id="NewUssd" class="hms.ctap.idea.plugin.action.NewServiceClassAction"/>
           <add-to-group anchor="after" group-id="NewGroup" relative-to-action="NewFromTemplate"/>
       </group>
+
+
+      <group id="Tap.Http.Clients" class="com.intellij.openapi.actionSystem.DefaultActionGroup">
+          <separator/>
+          <action id="lbsClient" class="hms.ctap.idea.plugin.action.snippet.LbsFieldGeneratorAction"></action>
+          <action id="smsClient" class="hms.ctap.idea.plugin.action.snippet.SmsFieldGeneratorAction"></action>
+          <add-to-group group-id="GenerateGroup" anchor="last"/>
+      </group>
   </actions>
 
   <extensions defaultExtensionNs="com.intellij">
