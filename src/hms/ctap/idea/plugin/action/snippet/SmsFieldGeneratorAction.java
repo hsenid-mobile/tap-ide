@@ -1,6 +1,6 @@
 package hms.ctap.idea.plugin.action.snippet;
 
-import hms.ctap.idea.plugin.file.templates.snippet.CodeSnippetUtil;
+import hms.ctap.idea.plugin.file.templates.snippet.CodeSnippet;
 import hms.ctap.idea.plugin.util.IconUtil;
 import hms.ctap.idea.plugin.util.MessageUtil;
 
@@ -14,7 +14,7 @@ public class SmsFieldGeneratorAction extends CodeSnippetGeneratorAction {
     }
 
     @Override
-    public CodeSnippetUtil codeSnippetUtil() {
-        return CodeSnippetUtil.SMS;
+    public CodeSnippet codeSnippet() {
+        return CodeSnippet.SMS;
     }
 }

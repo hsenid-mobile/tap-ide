@@ -1,7 +1,6 @@
 package hms.ctap.idea.plugin.action.snippet;
 
-import com.intellij.openapi.actionSystem.Presentation;
-import hms.ctap.idea.plugin.file.templates.snippet.CodeSnippetUtil;
+import hms.ctap.idea.plugin.file.templates.snippet.CodeSnippet;
 import hms.ctap.idea.plugin.util.IconUtil;
 import hms.ctap.idea.plugin.util.MessageUtil;
 
@@ -15,7 +14,7 @@ public class LbsFieldGeneratorAction extends CodeSnippetGeneratorAction {
     }
 
     @Override
-    public CodeSnippetUtil codeSnippetUtil() {
-        return CodeSnippetUtil.LBS;
+    public CodeSnippet codeSnippet() {
+        return CodeSnippet.LBS;
     }
 }
