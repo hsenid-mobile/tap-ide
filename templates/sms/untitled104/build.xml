@@ -10,14 +10,15 @@
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
   <property name="webcontent"  location="src/webapp"/>
- 
+  <property name="resources"  location="src/resources"/>
+
   <target name="init" depends="clean">
     	<!-- Create the time stamp -->
    	 <tstamp/>
     	<!-- Create the build directory structure used by compile -->
     	<mkdir dir="${build}"/>
   </target>
- 
+
   <target name="compile" depends="init"
   	description="compile the source " >
          <javac srcdir="${src}" destdir="${build}" verbose="false" debug="true" source="1.6" target="1.6" includeantruntime="false" >
@@ -37,25 +38,26 @@
         </jar>
 
     </target>
- 
- 
+
+
   <target name="war" depends="jar"
   	description="generate the distribution war" >
- 
+
 	<!-- Create the war distribution directory -->
   	<mkdir dir="${dist}/war"/>
- 
+
   	<!-- Follow standard WAR structure -->
   	<copydir dest="${dist}/war/build/WEB-INF/" src="${webcontent}/WEB-INF/" />
+  	<copydir dest="${dist}/war/build/WEB-INF/classes/resources" src="${resources}" />
 	<copy file="${build}/${projectName}.jar" tofile="${dist}/war/build/WEB-INF/lib/${projectName}.jar"/>
 	<copydir dest="${dist}/war/build/WEB-INF/lib/" src="${lib-package}/" />
- 
+
 	<jar jarfile="${dist}/war/${projectName}.war" basedir="${dist}/war/build/"/>
   </target>
- 
+
   <target name="clean"
     	description="clean up" >
- 
+
     	<!-- Delete the ${build} and ${dist} directory trees -->
     	<delete dir="${build}"/>
     	<delete dir="${dist}"/>
