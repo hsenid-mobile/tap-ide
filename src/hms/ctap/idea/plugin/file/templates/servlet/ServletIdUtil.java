@@ -41,7 +41,7 @@ public class ServletIdUtil {
         ArrayList<String> startsWithMethodName = new ArrayList<String>();
 
         for (String id : currentIds) {
-            if(idPrefix.startsWith(id)) {
+            if(id.startsWith(idPrefix)) {
                 startsWithMethodName.add(id);
             }
         }
