@@ -29,11 +29,19 @@
           <action id="smsClient" class="hms.ctap.idea.plugin.action.snippet.SmsFieldGeneratorAction"></action>
           <add-to-group group-id="GenerateGroup" anchor="last"/>
       </group>
+
+      <group id="CTAP.mainToolBarActions">
+          <separator/>
+          <action id="tap.simulator" class="hms.ctap.idea.plugin.action.simulator.TapSimulatorStartAction"></action>
+          <separator/>
+          <add-to-group group-id="MainToolBar" anchor="last"/>
+      </group>
+
   </actions>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->                       
-     <toolWindow id="CTAP simulator"  secondary="true" icon="/general/add.png" anchor="right" factoryClass="hms.ctap.idea.plugin.ui.CtapSimulatorWindowFactory"/>
+     <!--<toolWindow id="CTAP simulator"  secondary="true" icon="/general/add.png" anchor="right" factoryClass="hms.ctap.idea.plugin.ui.CtapSimulatorWindowFactory"/>-->
      <projectTemplate projectType="CTAP Application" templatePath="resources/CTAP_SMS_Service_Application.zip" category="true"/>
      <projectTemplate projectType="CTAP Application" templatePath="resources/CTAP_USSD_Service_Application.zip" category="true"/>
      <configurationType implementation="hms.ctap.idea.plugin.runner.conf.CtapRunnerConfigurationType" />
