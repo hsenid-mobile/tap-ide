@@ -31,7 +31,6 @@ public class TapSimulatorStartAction extends AnAction {
 
 
     private static final ExecutorService executorService = Executors.newFixedThreadPool(1);
-    private static final ScheduledThreadPoolExecutor scheduler = new ScheduledThreadPoolExecutor(1);
 
     public TapSimulatorStartAction() {
         super(MessageUtil.message("ctap.simulator.start.text"), MessageUtil.message("ctap.simulator.start.description"), IconUtil.ServiceClassIcon.SIMULATOR);
@@ -41,18 +40,22 @@ public class TapSimulatorStartAction extends AnAction {
         Future<Boolean> result = executorService.submit(new Callable<Boolean>() {
             @Override
             public Boolean call() {
-                try {
-                    Socket socket = new Socket();
-                    socket.connect(new InetSocketAddress("127.0.0.1", 10001), (int) TimeUnit.SECONDS.toMillis(timeoutInSeconds));
-                    socket.close();
-                    return true;
-                } catch (Exception ex) {
-                    return false;
-                }
+                return checkConnectivity(timeoutInSeconds);
             }
         });
 
         return result;
+    }
+
+    private Boolean checkConnectivity(int timeoutInSeconds) {
+        try {
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress("127.0.0.1", 10001), (int) TimeUnit.SECONDS.toMillis(timeoutInSeconds));
+            socket.close();
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     @Override
@@ -65,13 +68,18 @@ public class TapSimulatorStartAction extends AnAction {
             }
 
             if(requireSimulatorStartup) {
-                scheduler.schedule(new Runnable() {
+                final ScheduledThreadPoolExecutor scheduler = new ScheduledThreadPoolExecutor(1);
+                scheduler.scheduleWithFixedDelay(new Runnable() {
                     @Override
                     public void run() {
-                        enable(true, anActionEvent.getPresentation());
-                        tryStartBrowser();
+                        Boolean connectivity = checkConnectivity(1);
+                        if(connectivity) {
+                            enable(true, anActionEvent.getPresentation());
+                            tryStartBrowser();
+                            scheduler.shutdown();
+                        }
                     }
-                }, 10, TimeUnit.SECONDS);
+                }, 2, 2, TimeUnit.SECONDS);
             } else {
                 tryStartBrowser();
             }
