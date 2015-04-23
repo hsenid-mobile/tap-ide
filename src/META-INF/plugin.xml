@@ -25,8 +25,11 @@
 
       <group id="Tap.Http.Clients" class="com.intellij.openapi.actionSystem.DefaultActionGroup">
           <separator/>
-          <action id="lbsClient" class="hms.ctap.idea.plugin.action.snippet.LbsFieldGeneratorAction"></action>
           <action id="smsClient" class="hms.ctap.idea.plugin.action.snippet.SmsFieldGeneratorAction"></action>
+          <action id="ussdClient" class="hms.ctap.idea.plugin.action.snippet.UssdFieldGeneratorAction"></action>
+          <action id="subscriptionClient" class="hms.ctap.idea.plugin.action.snippet.SubscriptionFieldGeneratorAction"></action>
+          <action id="caasClient" class="hms.ctap.idea.plugin.action.snippet.CaasFieldGeneratorAction"></action>
+          <action id="lbsClient" class="hms.ctap.idea.plugin.action.snippet.LbsFieldGeneratorAction"></action>
           <add-to-group group-id="GenerateGroup" anchor="last"/>
       </group>
 

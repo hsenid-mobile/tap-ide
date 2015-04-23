@@ -10,7 +10,7 @@ import hms.ctap.idea.plugin.util.MessageUtil;
 public class LbsFieldGeneratorAction extends CodeSnippetGeneratorAction {
 
     public LbsFieldGeneratorAction() {
-        super(MessageUtil.message("ctap.snippet.lbs.client.generate.text"), MessageUtil.message("ctap.snippet.lbs.client.generate.description"), IconUtil.ServiceClassIcon.LBS);
+        super(MessageUtil.message("ctap.snippet.lbs.client.generate.text"), MessageUtil.message("ctap.snippet.lbs.client.generate.description"), IconUtil.ServiceClassIcon.LBS_SERVICE);
     }
 
     @Override

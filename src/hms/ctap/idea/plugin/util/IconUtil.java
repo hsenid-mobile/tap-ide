@@ -30,10 +30,12 @@ public class IconUtil {
         public static final Icon SMS_MO = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/sms.png");
         public static final Icon SMS_DR = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
         public static final Icon USSD_MO = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
-        public static final Icon CAS_NOTIFY = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
+        public static final Icon CAS_SERVICE = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
         public static final Icon SUBSCRIPTION_NOTIFY = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
 
-        public static final Icon LBS = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/lbs.png");
+        public static final Icon SMS = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/sms.png");
+        public static final Icon USSD = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/service.png");
+        public static final Icon LBS_SERVICE = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/lbs.png");
         public static final Icon SIMULATOR = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/simulator.png");
         public static final Icon SIMULATOR_LOADING = IconLoader.getIcon("/hms/ctap/idea/plugin/icons/loading.png");
     }

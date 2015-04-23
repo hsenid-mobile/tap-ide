@@ -12,8 +12,11 @@ import java.util.List;
  */
 public enum CodeSnippet {
 
-    LBS("LbsClient %s = new LbsClient(\"127.0.0.\");", "lbsClient", Arrays.asList("ctap.import1.import.LbsClient", "hms.kite.samples.api.ussd.MoUssdListener")),
-    SMS("SmsClient %s = new SmsClient(\"127.0.0.\");", "smsClient", Arrays.asList("ctap.import1.import.SmsClient", "ctap.import2.import.SmsClient"));
+    SMS("SmsRequestSender %s = new SmsRequestSender(new URL(\"http://127.0.0.1:7000/sms/send\"));", "smsRequestSender", Arrays.asList("hms.tap.api.sms.SmsRequestSender", "java.net.URL")),
+    USSD("UssdRequestSender %s = new UssdRequestSender(new URL(\"http://127.0.0.1:7000/ussd/send\"));", "ussdRequestSender", Arrays.asList("hms.tap.api.ussd.UssdRequestSender", "java.net.URL")),
+    SUBSCRIPTION("SubscriptionRequestSender %s = new SubscriptionRequestSender(new URL(\"http://127.0.0.1:7000/subscription/send\"));", "subscriptionRequestSender", Arrays.asList("hms.tap.api.subscription.SubscriptionRequestSender", "java.net.URL")),
+    CAS("ChargingRequestSender %s = new ChargingRequestSender(new URL(\"http://127.0.0.1:7000/caas/direct/debit\"));", "chargingRequestSender", Arrays.asList("hms.tap.api.caas.ChargingRequestSender", "java.net.URL")),
+    LBS("LbsRequestSender %s = new LbsRequestSender(new URL(\"http://127.0.0.1:7000/lbs/locate\"));", "lbsRequestSender", Arrays.asList("hms.tap.api.lbs.LbsRequestSender", "java.net.URL"));
 
     private final String fieldBodyTemplate;
     private final String fieldId;
