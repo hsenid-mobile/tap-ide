@@ -1,0 +1,21 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+/**
+* Created by ${USER} on ${DATE}.
+* Ussd service
+*/
+
+import hms.tap.api.ussd.MoUssdListener;
+import hms.tap.api.ussd.messages.MoUssdReq;
+
+public class ${NAME} implements MoUssdListener {
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void onReceivedUssd(MoUssdReq moUssdReq) {
+
+    }
+}

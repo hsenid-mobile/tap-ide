@@ -22,7 +22,7 @@ import com.intellij.util.IncorrectOperationException;
 import hms.ctap.idea.plugin.file.templates.servlet.ServletIdUtil;
 import hms.ctap.idea.plugin.ui.ErrorText;
 import hms.ctap.idea.plugin.util.IconUtil.ServiceClassIcon;
-import hms.ctap.idea.plugin.util.ReceiveServices;
+import hms.ctap.idea.plugin.util.ReceiveListeners;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.jps.model.java.JavaModuleSourceRootTypes;
 import hms.ctap.idea.plugin.file.templates.servlet.WebXmlUtil;
@@ -31,7 +31,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 
 import static hms.ctap.idea.plugin.util.MessageUtil.message;
-import static hms.ctap.idea.plugin.util.ReceiveServices.receiveServices;
+import static hms.ctap.idea.plugin.util.ReceiveListeners.RECEIVE_SERVICEs;
 
 /**
  * Created by isuru on 4/16/15.
@@ -82,7 +82,7 @@ public class NewServiceClassAction extends CreateElementActionBase {
     @NotNull
     @Override
     protected PsiElement[] create(String s, PsiDirectory psiDirectory) throws Exception {
-        final ReceiveServices receiveService = ReceiveServices.valueOf(serviceType);
+        final ReceiveListeners receiveService = ReceiveListeners.valueOf(serviceType);
         PreProcessResult preProcessResult = preProcessFileName(s, psiDirectory);
         final PsiFile psiFile = CreateFileFromTemplateAction.createFileFromTemplate(preProcessResult.getNewName(), receiveService.template(), preProcessResult.getPsiDirectory(), null);
 
@@ -107,7 +107,7 @@ public class NewServiceClassAction extends CreateElementActionBase {
         return new PsiElement[] {psiFile};
     }
 
-    private void servletXMLTag(XmlFile tempXmlFile, XmlFile webXmlFile, ReceiveServices receiveService, PsiFile psiFile) {
+    private void servletXMLTag(XmlFile tempXmlFile, XmlFile webXmlFile, ReceiveListeners receiveService, PsiFile psiFile) {
         XmlTag servletXmlTag = tempXmlFile.getRootTag().getSubTags()[0];
         String servletName = ServletIdUtil.getAvailableServletName(webXmlFile, receiveService.servletName());
         servletXmlTag.getSubTags()[0].getValue().setText(servletName);
@@ -223,11 +223,11 @@ public class NewServiceClassAction extends CreateElementActionBase {
                 }
             });
 
-            for (ReceiveServices s : receiveServices) {
+            for (ReceiveListeners s : RECEIVE_SERVICEs) {
                 serviceTypeComboBox.addItem(s.text(), s.icon(), s.name());
             }
 
-            serviceTypeComboBox.setSelectedName(receiveServices.get(0).name());
+            serviceTypeComboBox.setSelectedName(RECEIVE_SERVICEs.get(0).name());
         }
 
         protected JComponent createCenterPanel() {

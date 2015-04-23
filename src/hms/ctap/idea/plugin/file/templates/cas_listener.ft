@@ -1,0 +1,22 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+/**
+* Created by ${USER} on ${DATE}.
+*/
+
+import hms.tap.api.caas.CaasNotificationListener;
+import hms.tap.api.caas.messages.ChargingNotificationRequest;
+
+import javax.servlet.ServletConfig;
+
+public class ${NAME} implements CaasNotificationListener {
+
+    @Override
+    public void init(ServletConfig servletConfig) {
+
+    }
+
+    @Override
+    public void onReceiveCaasNotification(ChargingNotificationRequest chargingNotificationRequest) {
+
+    }
+}

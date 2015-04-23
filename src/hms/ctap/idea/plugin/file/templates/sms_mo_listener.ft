@@ -1,0 +1,20 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+/**
+* Created by ${USER} on ${DATE}.
+*/
+
+import hms.tap.api.sms.MoSmsListener;
+import hms.tap.api.sms.messages.MoSmsReq;
+
+public class ${NAME} implements MoSmsListener {
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void onReceivedSms(MoSmsReq moSmsReq) {
+
+    }
+}

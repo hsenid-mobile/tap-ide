@@ -1,0 +1,22 @@
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+/**
+* Created by ${USER} on ${DATE}.
+*/
+
+import hms.tap.api.subscription.SubscriptionNotificationListener;
+import hms.tap.api.subscription.messages.SubscriptionNotification;
+
+import javax.servlet.ServletConfig;
+
+public class ${NAME} implements SubscriptionNotificationListener {
+
+    @Override
+    public void init(ServletConfig servletConfig) {
+
+    }
+
+    @Override
+    public void onReceivedSubscription(SubscriptionNotification subscriptionNotification) {
+
+    }
+}
