@@ -1,4 +1,8 @@
-package ${IJ_BASE_PACKAGE}.util;
+#if (${IJ_BASE_PACKAGE} && ${IJ_BASE_PACKAGE} != "")package ${IJ_BASE_PACKAGE};#end
+
+/**
+ * Created by ${USER} on ${DATE}.
+ */
 
 import com.google.common.base.Optional;
 

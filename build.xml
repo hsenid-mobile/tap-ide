@@ -6,7 +6,6 @@
     <property environment="env"/>
     <property name="src" location="src"/>
     <property name="sms-templates" location="templates/sms"/>
-    <property name="ussd-templates" location="templates/ussd"/>
     <property name="build" location="build"/>
     <property name="lib-dir" location="lib"/>
     <property name="idea.community.build" location="${env.IDEA_IC}" />
@@ -27,8 +26,7 @@
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
 
-        <zip destfile="${build}/resources/CTAP_SMS_Service_Application.zip" basedir="${sms-templates}" includes="**/*.*"/>
-        <zip destfile="${build}/resources/CTAP_USSD_Service_Application.zip" basedir="${ussd-templates}" includes="**/*.*"/>
+        <zip destfile="${build}/resources/CTAP_Sample_Service_Application.zip" basedir="${sms-templates}" includes="**/*.*"/>
 
         <echo message="Using IDEA build from: ${idea.community.build}" />
     </target>

@@ -1,3 +1,4 @@
+#macro(condOp $check, $default)#if ($check && $check != "")$check.$default#else$default#end#end#set ($name = "#condOp(${IJ_BASE_PACKAGE}, 'SmsService')")
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,10 +9,10 @@
 
     <servlet>
         <servlet-name>moReceiver</servlet-name>
-        <servlet-class>hms.kite.samples.api.sms.MoSmsReceiver</servlet-class>
+        <servlet-class>hms.tap.api.sms.MoSmsReceiver</servlet-class>
         <init-param>
             <param-name>smsReceiver</param-name>
-            <param-value>${IJ_BASE_PACKAGE}.sms.SmsService</param-value>
+            <param-value>$name</param-value>
         </init-param>
     </servlet>
 
