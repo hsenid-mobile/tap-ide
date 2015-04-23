@@ -8,7 +8,7 @@
 <display-name>Archetype Created Web Application</display-name>
 
     <servlet>
-        <servlet-name>moReceiver</servlet-name>
+        <servlet-name>smsMoReceiver</servlet-name>
         <servlet-class>hms.tap.api.sms.MoSmsReceiver</servlet-class>
         <init-param>
             <param-name>smsReceiver</param-name>
@@ -17,8 +17,8 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>moReceiver</servlet-name>
-        <url-pattern>/mo-receiver</url-pattern>
+        <servlet-name>smsMoReceiver</servlet-name>
+        <url-pattern>/sms</url-pattern>
     </servlet-mapping>
 
 </web-app>
