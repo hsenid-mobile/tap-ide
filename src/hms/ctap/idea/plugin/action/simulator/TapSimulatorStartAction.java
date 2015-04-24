@@ -23,9 +23,9 @@ import java.util.concurrent.*;
 public class TapSimulatorStartAction extends AnAction {
 
 
-    private static final File pluginDirectory = new File(PathManager.getPluginsPath(), ConfigUtil.config("plugin.name"));
-    private static final String jettyPluginPath = pluginDirectory.getAbsolutePath() + File.separator + "lib" + File.separator + "mortbay-jetty-runner-8.1.9.jar";
-    private static final String simulatorPath = pluginDirectory.getAbsolutePath() + File.separator + "lib" + File.separator + "mchoice-sdp-sdk.war";
+    private static final File pluginLibDirectory = new File(PathManager.getJarPathForClass(TapSimulatorStartAction.class)).getParentFile();
+    private static final String jettyPluginPath = pluginLibDirectory.getAbsolutePath() + File.separator + "mortbay-jetty-runner-8.1.9.jar";
+    private static final String simulatorPath = pluginLibDirectory.getAbsolutePath() + File.separator + "mchoice-sdp-sdk.war";
     private static final String simulatorPort = ConfigUtil.config("simulator.port");
     private static final String command = "java -jar" + " " + jettyPluginPath + " " + "--port" + " " + simulatorPort +  " " + simulatorPath;
 
