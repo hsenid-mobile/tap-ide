@@ -51,6 +51,11 @@ public class CtapRunnerCommandLine extends JavaCommandLineState {
         String jarPath = PathUtil.getJarPathForClass(Runner.class);
         javaParams.getClassPath().add(jarPath);
         javaParams.setMainClass(MAIN_CLASS);
+        // Port - configured by the user (default 8080)
+        String port = this.getPort();
+        javaParams.getProgramParametersList().addParametersString(port);
+
+
         // Jetty XML - configured by the user
         String jettyXmls = this.getJettyXmlPaths();
         if(jettyXmls != null) {
@@ -65,9 +70,6 @@ public class CtapRunnerCommandLine extends JavaCommandLineState {
         // Classes - configured by the user
         String classes = this.getClassesDirectory();
         javaParams.getProgramParametersList().addParametersString(classes);
-        // Port - configured by the user (default 8080)
-        String port = this.getPort();
-        javaParams.getProgramParametersList().addParametersString(port);
         // VM Args
         String vmArgs = this.getVmArgs();
         if(vmArgs != null) {
