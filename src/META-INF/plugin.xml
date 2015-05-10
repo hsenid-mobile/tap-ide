@@ -32,6 +32,11 @@
           <action id="lbsClient" class="hms.ctap.idea.plugin.action.snippet.LbsFieldGeneratorAction"></action>
           <add-to-group group-id="GenerateGroup" anchor="last"/>
       </group>
+      <group id="Tap.Api.Utils" class="com.intellij.openapi.actionSystem.DefaultActionGroup">
+          <separator/>
+          <action id="ussdSessionProcessor" class="hms.ctap.idea.plugin.action.snippet.UssdMsgProcessorFieldGeneratorAction"></action>
+          <add-to-group group-id="GenerateGroup" anchor="last"/>
+      </group>
 
       <group id="CTAP.mainToolBarActions">
           <separator/>
