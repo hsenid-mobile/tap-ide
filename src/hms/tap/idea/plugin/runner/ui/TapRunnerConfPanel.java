@@ -10,7 +10,7 @@ import java.io.File;
  * Used the JGoodies Form Layout - which is BSD.
  * @author Gui Keller
  */
-public class CtapRunnerConfPanel {
+public class TapRunnerConfPanel {
 
     private JPanel mainPanel;
     private JTextField pathField;
@@ -30,7 +30,7 @@ public class CtapRunnerConfPanel {
     private JLabel pathLabel;
     private JLabel secondMsgLabel;
 
-    public CtapRunnerConfPanel() {
+    public TapRunnerConfPanel() {
         // Action executed when clicked on browse
         browseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

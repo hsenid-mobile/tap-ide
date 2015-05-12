@@ -1,7 +1,7 @@
-# hsenid mobile solutions, CTAP plugin for IntelliJ Idea
+# hsenid mobile solutions, TAP plugin for IntelliJ Idea
 
-CTAP plugin is an attempt to build an outstanding IDE for
-[CTAP](http://www.hsenidmobile.com/telco-application-platform/) using Intellij IDEA.
+TAP idea plugin is an attempt to build an outstanding IDE for
+[TAP](http://www.hsenidmobile.com/telco-application-platform/) using Intellij IDEA.
 
 
 ## TOC
@@ -19,7 +19,7 @@ CTAP plugin is an attempt to build an outstanding IDE for
 
 ## Current WIP
 
-We have started the project in great means of creating fully fledge framework specific IDE for CTAP, following are our milestones:
+We have started the project in great means of creating fully fledge framework specific IDE for TAP, following are our milestones:
 
 + [ ] Providing application templates, for project creation wizard
 + [ ] Full scale simulator for testing.
@@ -67,4 +67,4 @@ Please ensure that the bug is not reported already.
 
 ## Thank you
 
-Thank you for the hsenid mobile ctap developer community, who motivated us toward creating this solution.
+Thank you for the hsenid mobile tap developer community, who motivated us toward creating this solution.

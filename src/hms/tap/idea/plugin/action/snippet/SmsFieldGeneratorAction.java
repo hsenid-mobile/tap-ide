@@ -11,7 +11,7 @@ import hms.tap.idea.plugin.file.templates.snippet.CodeSnippet;
 public class SmsFieldGeneratorAction extends CodeSnippetGeneratorAction {
 
     public SmsFieldGeneratorAction() {
-        super(MessageUtil.message("ctap.snippet.sms.client.generate.text"), MessageUtil.message("ctap.snippet.sms.client.generate.description"), IconUtil.ServiceClassIcon.SMS_MO);
+        super(MessageUtil.message("tap.snippet.sms.client.generate.text"), MessageUtil.message("tap.snippet.sms.client.generate.description"), IconUtil.ServiceClassIcon.SMS_MO);
     }
 
     @Override

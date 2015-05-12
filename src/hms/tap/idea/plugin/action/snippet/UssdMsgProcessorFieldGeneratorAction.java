@@ -12,7 +12,7 @@ import hms.tap.idea.plugin.util.MessageUtil;
 public class UssdMsgProcessorFieldGeneratorAction extends CodeSnippetGeneratorAction {
 
     public UssdMsgProcessorFieldGeneratorAction() {
-        super(MessageUtil.message("ctap.snippet.ussd.msg.processor.generate.text"), MessageUtil.message("ctap.snippet.ussd.msg.processor.generate.description"), IconUtil.ServiceClassIcon.USSD_MSG_PROCESSOR);
+        super(MessageUtil.message("tap.snippet.ussd.msg.processor.generate.text"), MessageUtil.message("tap.snippet.ussd.msg.processor.generate.description"), IconUtil.ServiceClassIcon.USSD_MSG_PROCESSOR);
     }
 
     @Override

@@ -10,7 +10,7 @@ else
 	echo ""
 	echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 	echo "Error !!!, set the IDEA_SOURCE_LOCATION Ex: "
-	echo "IDEA_SOURCE_LOCATION=/foss/ctap-dev-studio/intellij-community-idea-140.455/ ./package_all.sh"
+	echo "IDEA_SOURCE_LOCATION=/foss/tap-dev-studio/intellij-community-idea-140.455/ ./package_all.sh"
 	echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 	echo ""
 	exit 2

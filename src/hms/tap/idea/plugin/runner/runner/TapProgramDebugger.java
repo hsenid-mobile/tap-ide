@@ -1,6 +1,6 @@
 package hms.tap.idea.plugin.runner.runner;
 
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
+import hms.tap.idea.plugin.runner.model.TapRunnerConfiguration;
 import com.intellij.debugger.engine.DebuggerUtils;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
@@ -10,7 +10,6 @@ import com.intellij.execution.executors.DefaultDebugExecutor;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.project.Project;
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  * Jetty Program Debugger - Jetty Runner on Debug mode or Normal mode
  * @author Gui Keller
  */
-public class CtapProgramDebugger extends GenericDebuggerRunner {
+public class TapProgramDebugger extends GenericDebuggerRunner {
 
     // These are JVM 6 onwards hence the JVM6 as min requirement
     private static final String XDEBUG = "-Xdebug";
@@ -27,7 +26,7 @@ public class CtapProgramDebugger extends GenericDebuggerRunner {
     private static final String LOCALHOST = "127.0.0.1";
 
 
-    public CtapProgramDebugger(){
+    public TapProgramDebugger(){
         super();
     }
 
@@ -37,7 +36,7 @@ public class CtapProgramDebugger extends GenericDebuggerRunner {
     }
 
     public boolean canRun(@NotNull String value, @NotNull RunProfile runProfile) {
-        if(!(runProfile instanceof CtapRunnerConfiguration)){
+        if(!(runProfile instanceof TapRunnerConfiguration)){
             return false;
         }
         return true;

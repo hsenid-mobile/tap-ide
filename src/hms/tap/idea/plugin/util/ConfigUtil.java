@@ -16,7 +16,7 @@ public class ConfigUtil extends AbstractBundle {
     }
 
     @NonNls
-    private static final String BUNDLE = "hms.ctap.idea.plugin.configuration.application";
+    private static final String BUNDLE = "hms.tap.idea.plugin.configuration.application";
     private static final ConfigUtil ourInstance = new ConfigUtil();
 
     private ConfigUtil() {

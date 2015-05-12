@@ -1,6 +1,20 @@
 <idea-plugin version="2">
   <name>hSenid Mobile TAP IDE</name>
-  <description></description>
+  <description>
+      <![CDATA[
+      All in one plugin for telco application development with hSenid mobile apis. Logon to hSenid mobile DevSpace for more details<a href="http://devspace.hsenidmobile.com/">DevSpace</a>.
+      IDE provide full scale support for:
+        <ul>
+        <li>Telco application sample projects.</li>
+        <li>Code generation.</li>
+        <li>Ant based extensive build system.</li>
+        <li>Running and debugging application with no extra configurations</li>
+        <li>Automatic code snippet generation for integrations.</li>
+        <li>In build tap simulator</li>
+        <li>Integrated SDK for USSD session management</li>
+        </ul>
+      ]]>
+  </description>
   <version>1.0</version>
   <vendor>hms</vendor>
     
@@ -47,8 +61,8 @@
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
      <projectTemplate projectType="TAP Application" templatePath="resources/TAP_Sample_Service_Application.zip" category="true"/>
-     <configurationType implementation="hms.tap.idea.plugin.runner.conf.CtapRunnerConfigurationType" />
-     <programRunner id="Run" implementation="hms.tap.idea.plugin.runner.runner.CtapProgramRunner" order="first"/>
-     <programRunner id="Debug" implementation="hms.tap.idea.plugin.runner.runner.CtapProgramDebugger" order="last" />
+     <configurationType implementation="hms.tap.idea.plugin.runner.conf.TapRunnerConfigurationType" />
+     <programRunner id="Run" implementation="hms.tap.idea.plugin.runner.runner.TapProgramRunner" order="first"/>
+     <programRunner id="Debug" implementation="hms.tap.idea.plugin.runner.runner.TapProgramDebugger" order="last" />
   </extensions>
 </idea-plugin>

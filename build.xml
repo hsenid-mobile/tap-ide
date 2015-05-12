@@ -45,16 +45,16 @@
     <target name="package" depends="compile" description="generate the distribution">
 
         <!-- Create the distribution archive -->
-        <jar jarfile="${build}/package/${ctap.idea.plugin.name}/lib/${ctap.idea.plugin.name}.jar" update="true">
+        <jar jarfile="${build}/package/${tap.idea.plugin.name}/lib/${tap.idea.plugin.name}.jar" update="true">
             <fileset dir="${build}" includes="**/*.*" />
             <fileset dir="${src}" excludes="**/*.java" />
         </jar>
 
-        <copy todir="${build}/package/${ctap.idea.plugin.name}/lib">
+        <copy todir="${build}/package/${tap.idea.plugin.name}/lib">
             <fileset dir="${lib-dir}" excludes=".keepme"/>
         </copy>
 
-        <zip destfile="${build}/${ctap.idea.plugin.name}.zip" basedir="${build}/package" includes="**/*.*"/>
+        <zip destfile="${build}/${tap.idea.plugin.name}.zip" basedir="${build}/package" includes="**/*.*"/>
     </target>
 
     <target name="clean" description="clean up">

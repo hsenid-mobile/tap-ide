@@ -17,12 +17,12 @@ import java.awt.*;
 import java.lang.String;
 import hms.tap.idea.plugin.ui.UssdUiFactory;
 
-public class CtapSimulatorWindowFactory implements ToolWindowFactory {
+public class TapSimulatorWindowFactory implements ToolWindowFactory {
 
     private JPanel toolWindowContent;
     private ToolWindow toolWindow;
 
-    public CtapSimulatorWindowFactory() {
+    public TapSimulatorWindowFactory() {
          UssdUiFactory ussdUiFactory = new UssdUiFactory(this.toolWindowContent);
          this.toolWindowContent = ussdUiFactory.createInitialUI();
     }

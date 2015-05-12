@@ -1,6 +1,6 @@
 package hms.tap.idea.plugin.runner.runner;
 
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
+import hms.tap.idea.plugin.runner.model.TapRunnerConfiguration;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.JavaCommandLineState;
 import com.intellij.execution.configurations.JavaParameters;
@@ -10,7 +10,6 @@ import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.util.PathUtil;
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.mortbay.jetty.runner.Runner;
 
@@ -20,15 +19,15 @@ import org.mortbay.jetty.runner.Runner;
  * @see com.intellij.execution.configurations.JavaCommandLineState
  * @author Gui Keller
  */
-public class CtapRunnerCommandLine extends JavaCommandLineState {
+public class TapRunnerCommandLine extends JavaCommandLineState {
 
     // Jetty "Main Class" - the target
     private static final String MAIN_CLASS = Runner.class.getName();
 
     private ExecutionEnvironment environment;
-    private CtapRunnerConfiguration model;
+    private TapRunnerConfiguration model;
 
-    public CtapRunnerCommandLine(@NotNull ExecutionEnvironment environment, CtapRunnerConfiguration model) {
+    public TapRunnerCommandLine(@NotNull ExecutionEnvironment environment, TapRunnerConfiguration model) {
         super(environment);
         this.environment = environment;
         this.model = model;
@@ -182,7 +181,7 @@ public class CtapRunnerCommandLine extends JavaCommandLineState {
         return vmArgs != null && !vmArgs.isEmpty() ? vmArgs : null;
     }
 
-    public void setModel(CtapRunnerConfiguration model) {
+    public void setModel(TapRunnerConfiguration model) {
         this.model = model;
     }
 

@@ -17,11 +17,11 @@ import static hms.tap.idea.plugin.util.MessageUtil.message;
  */
 public enum ReceiveListeners {
 
-    SMS_MO(ServiceClassIcon.SMS_MO, message("ctap.receive.service.sms.mo.text"), message("ctap.receive.service.sms.mo.description"), "/sms", "smsMoReceiver", "hms.tap.api.sms.MoSmsReceiver", "smsReceiver", FileTemplates.SMS_MO_LISTENER_TEMPLATE),
-    SMS_DR(ServiceClassIcon.SMS_DR, message("ctap.receive.service.sms.dr.text"), message("ctap.receive.service.sms.dr.description"), "/sms-dr", "smsDrReceiver", "hms.tap.api.sms.MoSmsDeliveryReportReceiver", "smsDeReportReceiver", FileTemplates.SMS_DR_LISTENER_TEMPLATE),
-    USSD_M0(ServiceClassIcon.USSD_MO, message("ctap.receive.service.ussd.mo.text"), message("ctap.receive.service.ussd.mo.description"), "/ussd", "ussdReceiver", "hms.tap.api.ussd.MoUssdReceiver", "ussdReceiver", FileTemplates.USSD_MO_LISTENER_TEMPLATE),
-    SUBSCRIPTION(ServiceClassIcon.SUBSCRIPTION_NOTIFY, message("ctap.receive.service.subscription.notify.text"), message("ctap.receive.service.subscription.notify.description"), "/subscription", "subscriptionReceiver", "hms.tap.api.subscription.SubscriptionNotificationReceiver", "subReceiver", FileTemplates.SUBSCRIPTION_LISTENER_TEMPLATE),
-    CAS(ServiceClassIcon.CAS_SERVICE, message("ctap.receive.service.cas.notify.text"), message("ctap.receive.service.cas.notify.description"), "/cas", "casReceiver", "hms.tap.api.caas.ChargingNotificationReceiver", "chargingNotificationReceive", FileTemplates.CAS_LISTENER_TEMPLATE);
+    SMS_MO(ServiceClassIcon.SMS_MO, message("tap.receive.service.sms.mo.text"), message("tap.receive.service.sms.mo.description"), "/sms", "smsMoReceiver", "hms.tap.api.sms.MoSmsReceiver", "smsReceiver", FileTemplates.SMS_MO_LISTENER_TEMPLATE),
+    SMS_DR(ServiceClassIcon.SMS_DR, message("tap.receive.service.sms.dr.text"), message("tap.receive.service.sms.dr.description"), "/sms-dr", "smsDrReceiver", "hms.tap.api.sms.MoSmsDeliveryReportReceiver", "smsDeReportReceiver", FileTemplates.SMS_DR_LISTENER_TEMPLATE),
+    USSD_M0(ServiceClassIcon.USSD_MO, message("tap.receive.service.ussd.mo.text"), message("tap.receive.service.ussd.mo.description"), "/ussd", "ussdReceiver", "hms.tap.api.ussd.MoUssdReceiver", "ussdReceiver", FileTemplates.USSD_MO_LISTENER_TEMPLATE),
+    SUBSCRIPTION(ServiceClassIcon.SUBSCRIPTION_NOTIFY, message("tap.receive.service.subscription.notify.text"), message("tap.receive.service.subscription.notify.description"), "/subscription", "subscriptionReceiver", "hms.tap.api.subscription.SubscriptionNotificationReceiver", "subReceiver", FileTemplates.SUBSCRIPTION_LISTENER_TEMPLATE),
+    CAS(ServiceClassIcon.CAS_SERVICE, message("tap.receive.service.cas.notify.text"), message("tap.receive.service.cas.notify.description"), "/cas", "casReceiver", "hms.tap.api.caas.ChargingNotificationReceiver", "chargingNotificationReceive", FileTemplates.CAS_LISTENER_TEMPLATE);
 
 
     private final Icon icon;

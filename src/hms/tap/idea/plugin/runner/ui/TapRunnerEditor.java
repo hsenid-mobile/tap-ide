@@ -1,6 +1,6 @@
 package hms.tap.idea.plugin.runner.ui;
 
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
+import hms.tap.idea.plugin.runner.model.TapRunnerConfiguration;
 import com.intellij.compiler.impl.ModuleCompileScope;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileTask;
@@ -15,7 +15,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.search.PsiShortNamesCache;
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,73 +26,73 @@ import java.util.UUID;
  * @see com.intellij.openapi.options.SettingsEditor
  * @author Gui Keller
  */
-public class CtapRunnerEditor extends SettingsEditor<CtapRunnerConfiguration> {
+public class TapRunnerEditor extends SettingsEditor<TapRunnerConfiguration> {
 
-    private CtapRunnerConfPanel configurationPanel;
+    private TapRunnerConfPanel configurationPanel;
     private String mainOutputDirectory;
 
-    public CtapRunnerEditor(CtapRunnerConfiguration ctapRunnerConfiguration) {
-        this.configurationPanel = new CtapRunnerConfPanel();
-        super.resetFrom(ctapRunnerConfiguration);
+    public TapRunnerEditor(TapRunnerConfiguration tapRunnerConfiguration) {
+        this.configurationPanel = new TapRunnerConfPanel();
+        super.resetFrom(tapRunnerConfiguration);
     }
 
     /**
      * This is invoked when the form is first loaded.
      * The values may be stored in disk, if not, set some defaults
-     * @param ctapRunnerConfiguration ctapRunnerConfiguration
+     * @param tapRunnerConfiguration tapRunnerConfiguration
      */
     @Override
-    protected void resetEditorFrom(CtapRunnerConfiguration ctapRunnerConfiguration) {
-        Project project = ctapRunnerConfiguration.getProject();
+    protected void resetEditorFrom(TapRunnerConfiguration tapRunnerConfiguration) {
+        Project project = tapRunnerConfiguration.getProject();
         // WebApp Path
-        if (ctapRunnerConfiguration.getWebappPaths() != null) {
-            this.configurationPanel.getPathField().setText(ctapRunnerConfiguration.getWebappPaths());
+        if (tapRunnerConfiguration.getWebappPaths() != null) {
+            this.configurationPanel.getPathField().setText(tapRunnerConfiguration.getWebappPaths());
         } else {
             String projectName = project.getName();
             this.configurationPanel.getPathField().setText("/"+projectName);
         }
         // WebApp Folder (one level down to web.xml"
-        if (ctapRunnerConfiguration.getWebappFolders() != null) {
-            this.configurationPanel.getWebappField().setText(ctapRunnerConfiguration.getWebappFolders());
+        if (tapRunnerConfiguration.getWebappFolders() != null) {
+            this.configurationPanel.getWebappField().setText(tapRunnerConfiguration.getWebappFolders());
         } else {
             String webAppsFolder = getWebAppsFolder(project);
             this.configurationPanel.getWebappField().setText(webAppsFolder);
         }
         // Classes directory
-        if (ctapRunnerConfiguration.getClassesDirectories() != null) {
-            this.configurationPanel.getClassesField().setText(ctapRunnerConfiguration.getClassesDirectories());
+        if (tapRunnerConfiguration.getClassesDirectories() != null) {
+            this.configurationPanel.getClassesField().setText(tapRunnerConfiguration.getClassesDirectories());
         } else {
             String outputDirectory = getMainOutputDirectory(project);
             this.configurationPanel.getClassesField().setText(outputDirectory);
         }
         // Runs on port
-        if (ctapRunnerConfiguration.getRunningOnPort() != null) {
-            this.configurationPanel.getRunOnPortField().setText(ctapRunnerConfiguration.getRunningOnPort());
+        if (tapRunnerConfiguration.getRunningOnPort() != null) {
+            this.configurationPanel.getRunOnPortField().setText(tapRunnerConfiguration.getRunningOnPort());
         } else {
             this.configurationPanel.getRunOnPortField().setText("8080");
         }
         // Jetty XML (Optional)
-        this.configurationPanel.getXmlField().setText(ctapRunnerConfiguration.getJettyXml());
+        this.configurationPanel.getXmlField().setText(tapRunnerConfiguration.getJettyXml());
         // Vm Args (Optional)
-        this.configurationPanel.getVmArgsField().setText(ctapRunnerConfiguration.getVmArgs());
+        this.configurationPanel.getVmArgsField().setText(tapRunnerConfiguration.getVmArgs());
     }
 
     /**
      * This is invoked when the user fills the form and pushes apply/ok
-     * @param ctapRunnerConfiguration ctapRunnerConfiguration
+     * @param tapRunnerConfiguration tapRunnerConfiguration
      * @throws com.intellij.openapi.options.ConfigurationException ex
      */
     @Override
-    protected void applyEditorTo(CtapRunnerConfiguration ctapRunnerConfiguration) throws ConfigurationException {
-        ctapRunnerConfiguration.setWebappPaths(this.configurationPanel.getPathField().getText());
-        ctapRunnerConfiguration.setWebappFolders(this.configurationPanel.getWebappField().getText());
-        ctapRunnerConfiguration.setClassesDirectories(this.configurationPanel.getClassesField().getText());
-        ctapRunnerConfiguration.setRunningOnPort(this.configurationPanel.getRunOnPortField().getText());
-        ctapRunnerConfiguration.setJettyXml(this.configurationPanel.getXmlField().getText());
-        ctapRunnerConfiguration.setVmArgs(this.configurationPanel.getVmArgsField().getText());
+    protected void applyEditorTo(TapRunnerConfiguration tapRunnerConfiguration) throws ConfigurationException {
+        tapRunnerConfiguration.setWebappPaths(this.configurationPanel.getPathField().getText());
+        tapRunnerConfiguration.setWebappFolders(this.configurationPanel.getWebappField().getText());
+        tapRunnerConfiguration.setClassesDirectories(this.configurationPanel.getClassesField().getText());
+        tapRunnerConfiguration.setRunningOnPort(this.configurationPanel.getRunOnPortField().getText());
+        tapRunnerConfiguration.setJettyXml(this.configurationPanel.getXmlField().getText());
+        tapRunnerConfiguration.setVmArgs(this.configurationPanel.getVmArgsField().getText());
         try {
             // Not entirely sure if 'I have' to do this - the IntelliJ framework may do
-            ctapRunnerConfiguration.writeExternal(new Element(CtapRunnerConfiguration.PREFIX + UUID.randomUUID().toString()));
+            tapRunnerConfiguration.writeExternal(new Element(TapRunnerConfiguration.PREFIX + UUID.randomUUID().toString()));
         } catch (WriteExternalException e) {
             throw new RuntimeException(e);
         }
@@ -123,7 +122,7 @@ public class CtapRunnerEditor extends SettingsEditor<CtapRunnerConfiguration> {
             public boolean execute(CompileContext compileContext) {
                 // Through the "CompileContext" I can get the output directory of the main module
                 VirtualFile mainOutputDirectory = compileContext.getModuleOutputDirectory(mainModule);
-                CtapRunnerEditor.this.mainOutputDirectory = mainOutputDirectory.getPresentableUrl();
+                TapRunnerEditor.this.mainOutputDirectory = mainOutputDirectory.getPresentableUrl();
                 return true;
             }
         };
@@ -155,7 +154,7 @@ public class CtapRunnerEditor extends SettingsEditor<CtapRunnerConfiguration> {
         return virtualFile.getPresentableUrl();
     }
 
-    public void setConfigurationPanel(CtapRunnerConfPanel configurationPanel) {
+    public void setConfigurationPanel(TapRunnerConfPanel configurationPanel) {
         this.configurationPanel = configurationPanel;
     }
 }

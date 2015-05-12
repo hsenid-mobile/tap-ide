@@ -35,7 +35,7 @@ public class TapSimulatorStartAction extends AnAction {
     private static final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     public TapSimulatorStartAction() {
-        super(MessageUtil.message("ctap.simulator.start.text"), MessageUtil.message("ctap.simulator.start.description"), IconUtil.ServiceClassIcon.SIMULATOR);
+        super(MessageUtil.message("tap.simulator.start.text"), MessageUtil.message("tap.simulator.start.description"), IconUtil.ServiceClassIcon.SIMULATOR);
     }
 
     public Future<Boolean> checkPort(final int timeoutInSeconds) {

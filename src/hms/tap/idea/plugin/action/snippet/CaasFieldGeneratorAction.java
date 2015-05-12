@@ -13,7 +13,7 @@ import hms.tap.idea.plugin.util.MessageUtil;
 public class CaasFieldGeneratorAction extends CodeSnippetGeneratorAction {
 
     public CaasFieldGeneratorAction() {
-        super(MessageUtil.message("ctap.snippet.caas.client.generate.text"), MessageUtil.message("ctap.snippet.caas.client.generate.description"), IconUtil.ServiceClassIcon.CAS_SERVICE);
+        super(MessageUtil.message("tap.snippet.caas.client.generate.text"), MessageUtil.message("tap.snippet.caas.client.generate.description"), IconUtil.ServiceClassIcon.CAS_SERVICE);
     }
 
     @Override

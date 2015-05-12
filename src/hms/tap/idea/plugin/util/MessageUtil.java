@@ -19,7 +19,7 @@ public class MessageUtil extends AbstractBundle {
     }
 
     @NonNls
-    private static final String BUNDLE = "hms.ctap.idea.plugin.messages.messages";
+    private static final String BUNDLE = "hms.tap.idea.plugin.messages.messages";
     private static final MessageUtil ourInstance = new MessageUtil();
 
     private MessageUtil() {

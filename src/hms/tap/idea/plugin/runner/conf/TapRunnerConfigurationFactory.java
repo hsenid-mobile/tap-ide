@@ -1,11 +1,10 @@
 package hms.tap.idea.plugin.runner.conf;
 
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
+import hms.tap.idea.plugin.runner.model.TapRunnerConfiguration;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.ConfigurationType;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.openapi.project.Project;
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -13,15 +12,15 @@ import org.jetbrains.annotations.NotNull;
  * @see com.intellij.execution.configurations.ConfigurationFactory
  * @author Gui Keller
  */
-public class CtapRunnerConfigurationFactory extends ConfigurationFactory {
+public class TapRunnerConfigurationFactory extends ConfigurationFactory {
 
-    public CtapRunnerConfigurationFactory(@NotNull ConfigurationType type) {
+    public TapRunnerConfigurationFactory(@NotNull ConfigurationType type) {
         super(type);
     }
 
     @Override
     public RunConfiguration createTemplateConfiguration(Project project) {
-        return new CtapRunnerConfiguration(project, this, "Jetty Runner");
+        return new TapRunnerConfiguration(project, this, "Jetty Runner");
     }
 
 }

@@ -12,7 +12,7 @@ public class NcsUiFactory  {
         JLabel phoneImage;
 
         protected URL getImage(String imageName){
-                return getClass().getResource("/resources/ctap-simulator/images/"+imageName);
+                return getClass().getResource("/resources/tap-simulator/images/"+imageName);
         }
 
         public  NcsUiFactory(JPanel toolWindowContent) {

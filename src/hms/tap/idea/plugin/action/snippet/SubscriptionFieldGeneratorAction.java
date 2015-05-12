@@ -12,7 +12,7 @@ import hms.tap.idea.plugin.util.MessageUtil;
 public class SubscriptionFieldGeneratorAction extends CodeSnippetGeneratorAction {
 
     public SubscriptionFieldGeneratorAction() {
-        super(MessageUtil.message("ctap.snippet.subscription.client.generate.text"), MessageUtil.message("ctap.snippet.subscription.client.generate.description"), IconUtil.ServiceClassIcon.SUBSCRIPTION_NOTIFY);
+        super(MessageUtil.message("tap.snippet.subscription.client.generate.text"), MessageUtil.message("tap.snippet.subscription.client.generate.description"), IconUtil.ServiceClassIcon.SUBSCRIPTION_NOTIFY);
     }
 
     @Override

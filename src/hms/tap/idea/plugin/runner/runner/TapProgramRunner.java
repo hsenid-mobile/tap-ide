@@ -1,6 +1,6 @@
 package hms.tap.idea.plugin.runner.runner;
 
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
+import hms.tap.idea.plugin.runner.model.TapRunnerConfiguration;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
@@ -8,7 +8,6 @@ import com.intellij.execution.runners.DefaultProgramRunner;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.openapi.project.Project;
-import hms.tap.idea.plugin.runner.model.CtapRunnerConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -16,11 +15,11 @@ import org.jetbrains.annotations.NotNull;
  * @see com.intellij.execution.runners.DefaultProgramRunner
  * @author Gui Keller
  */
-public class CtapProgramRunner extends DefaultProgramRunner {
+public class TapProgramRunner extends DefaultProgramRunner {
 
     private static final String RUN = "Run";
 
-    public CtapProgramRunner(){
+    public TapProgramRunner(){
         super();
     }
 
@@ -30,7 +29,7 @@ public class CtapProgramRunner extends DefaultProgramRunner {
     }
 
     public boolean canRun(@NotNull String value, @NotNull RunProfile runProfile) {
-        if(!(runProfile instanceof CtapRunnerConfiguration)){
+        if(!(runProfile instanceof TapRunnerConfiguration)){
             return false;
         }
         // Values passed are: Run or Debug

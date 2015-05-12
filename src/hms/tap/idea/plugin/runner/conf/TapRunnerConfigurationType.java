@@ -12,18 +12,18 @@ import javax.swing.*;
  * @see com.intellij.execution.configurations.ConfigurationType
  * @author Gui Keller
  */
-public class CtapRunnerConfigurationType implements ConfigurationType {
+public class TapRunnerConfigurationType implements ConfigurationType {
 
-    public CtapRunnerConfigurationType(){
+    public TapRunnerConfigurationType(){
         super();
     }
 
     public String getDisplayName() {
-        return "Ctap Runner";
+        return "TAP Runner";
     }
 
     public String getConfigurationTypeDescription() {
-        return "IntelliJ IDEA Ctap Runner";
+        return "IntelliJ IDEA TAP Runner";
     }
 
     public Icon getIcon() {
@@ -32,11 +32,11 @@ public class CtapRunnerConfigurationType implements ConfigurationType {
 
     @NotNull
     public String getId() {
-        return "CtapRunner-By-hms";
+        return "TAPRunner-By-hms";
     }
 
     public ConfigurationFactory[] getConfigurationFactories() {
-        CtapRunnerConfigurationFactory factory = new CtapRunnerConfigurationFactory(this);
+        TapRunnerConfigurationFactory factory = new TapRunnerConfigurationFactory(this);
         return new ConfigurationFactory[]{factory};
     }
 }

@@ -46,7 +46,7 @@ public class NewServiceClassAction extends CreateElementActionBase {
     private String servletPath = null;
 
     public NewServiceClassAction() {
-        super(MessageUtil.message("ctap.receive.services.text"), MessageUtil.message("ctap.receive.services.description"), ServiceClassIcon.Service);
+        super(MessageUtil.message("tap.receive.services.text"), MessageUtil.message("tap.receive.services.description"), ServiceClassIcon.Service);
     }
 
     @Override
@@ -212,7 +212,7 @@ public class NewServiceClassAction extends CreateElementActionBase {
             init();
 
             errorText = new ErrorText(errorTextLabel);
-            setTitle(MessageUtil.message("ctap.receive.services.wizard.title"));
+            setTitle(MessageUtil.message("tap.receive.services.wizard.title"));
             setOKActionEnabled(false);
 
             listenerClassNameTextField.getDocument().addDocumentListener(new DocumentAdapter() {
@@ -245,7 +245,7 @@ public class NewServiceClassAction extends CreateElementActionBase {
             if (myValidator.checkInput(inputString) && myValidator.canClose(inputString)) {
                 close(OK_EXIT_CODE);
             } else {
-                errorText.setError(MessageUtil.message("ctap.create.class.incorrect.name"));
+                errorText.setError(MessageUtil.message("tap.create.class.incorrect.name"));
             }
             //close(OK_EXIT_CODE);
         }

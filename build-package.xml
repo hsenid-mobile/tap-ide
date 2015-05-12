@@ -1,4 +1,4 @@
-<project name="CTAP idea plugin, scripted build file" default="package" basedir=".">
+<project name="TAP idea plugin, scripted build file" default="package" basedir=".">
 
     <property file="build.properties" />
 
@@ -40,7 +40,7 @@
     <target name="package" depends="compile" description="generate the distribution">
 
         <!-- Create the distribution archive -->
-        <jar jarfile="${build}/${ctap.idea.plugin.name}.jar" update="true">
+        <jar jarfile="${build}/${tap.idea.plugin.name}.jar" update="true">
             <fileset dir="${build}" includes="**/*.*" />
             <fileset dir="${src}" excludes="**/*.java" />
         </jar>

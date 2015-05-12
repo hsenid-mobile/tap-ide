@@ -1,7 +1,7 @@
 package hms.tap.idea.plugin.runner.model;
 
-import hms.tap.idea.plugin.runner.runner.CtapRunnerCommandLine;
-import hms.tap.idea.plugin.runner.ui.CtapRunnerEditor;
+import hms.tap.idea.plugin.runner.runner.TapRunnerCommandLine;
+import hms.tap.idea.plugin.runner.ui.TapRunnerEditor;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
 import com.intellij.execution.configurations.*;
@@ -23,7 +23,7 @@ import java.util.UUID;
  * @see com.intellij.execution.configurations.LocatableConfigurationBase
  * @author Gui Keller
  */
-public class CtapRunnerConfiguration extends LocatableConfigurationBase implements RunProfileWithCompileBeforeLaunchOption {
+public class TapRunnerConfiguration extends LocatableConfigurationBase implements RunProfileWithCompileBeforeLaunchOption {
 
     public static final String PREFIX = "JettyRunnerV05-";
 
@@ -43,18 +43,18 @@ public class CtapRunnerConfiguration extends LocatableConfigurationBase implemen
     private String vmArgs;
 
 
-    public CtapRunnerConfiguration(Project project, ConfigurationFactory factory, String name) {
+    public TapRunnerConfiguration(Project project, ConfigurationFactory factory, String name) {
         super(project, factory, name);
     }
 
     @NotNull
-    public SettingsEditor<CtapRunnerConfiguration> getConfigurationEditor() {
-        return new CtapRunnerEditor(this);
+    public SettingsEditor<TapRunnerConfiguration> getConfigurationEditor() {
+        return new TapRunnerEditor(this);
     }
 
     @Nullable
     public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment executionEnvironment) throws ExecutionException {
-        return new CtapRunnerCommandLine(executionEnvironment, this);
+        return new TapRunnerCommandLine(executionEnvironment, this);
     }
 
     // Persistence of values in disk
@@ -87,7 +87,7 @@ public class CtapRunnerConfiguration extends LocatableConfigurationBase implemen
         storedValues.setValue(VM_ARGS, this.vmArgs);
     }
 
-    public CtapRunnerConfiguration clone(){
+    public TapRunnerConfiguration clone(){
         try {
             super.clone();
             // Duplication of a configuration
@@ -99,7 +99,7 @@ public class CtapRunnerConfiguration extends LocatableConfigurationBase implemen
             ConfigurationFactory factory = super.getFactory();
             RunConfiguration template = factory.createTemplateConfiguration(project);
             // Copies the values by reading the previous conf and returns the new configuration
-            CtapRunnerConfiguration configuration = (CtapRunnerConfiguration) template;
+            TapRunnerConfiguration configuration = (TapRunnerConfiguration) template;
             configuration.setName(super.getName());
             configuration.readExternal(element);
             return configuration;
