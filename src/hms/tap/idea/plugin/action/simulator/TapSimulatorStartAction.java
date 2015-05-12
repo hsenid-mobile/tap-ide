@@ -7,8 +7,6 @@ import com.intellij.openapi.application.PathManager;
 import hms.tap.idea.plugin.util.ConfigUtil;
 import hms.tap.idea.plugin.util.IconUtil;
 import hms.tap.idea.plugin.util.MessageUtil;
-import hms.tap.idea.plugin.util.ConfigUtil;
-import hms.tap.idea.plugin.util.MessageUtil;
 
 import java.awt.*;
 import java.io.File;
