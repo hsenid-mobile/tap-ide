@@ -1,4 +1,4 @@
-<project name="CTAP idea plugin, scripted build file" default="package" basedir=".">
+<project name="TAP idea plugin, scripted build file" default="package" basedir=".">
 
     <property file="build.properties" />
 
@@ -26,7 +26,7 @@
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
 
-        <zip destfile="${build}/resources/CTAP_Sample_Service_Application.zip" basedir="${sms-templates}" includes="**/*.*"/>
+        <zip destfile="${build}/resources/TAP_Sample_Service_Application.zip" basedir="${sms-templates}" includes="**/*.*"/>
 
         <echo message="Using IDEA build from: ${idea.community.build}" />
     </target>

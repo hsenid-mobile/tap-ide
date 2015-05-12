@@ -1,46 +1,43 @@
 <idea-plugin version="2">
-  <name>CTAP idea plugin</name>
-  <description>idea plugin for hsenid mobile solutions,cloud telco application platform - A.K.A :- CTAP</description>
+  <name>hSenid Mobile TAP IDE</name>
+  <description></description>
   <version>1.0</version>
   <vendor>hms</vendor>
-    <!--
-    <idea-version since-build="8000"/>
-    -->
+    
   <application-components>
     <!-- Add your application components here -->
   </application-components>
 
   <project-components>
     <!-- Add your project components here -->
-     
   </project-components>
 
   <actions>
-      <group id="CTAP.NewActions">
+      <group id="TAP.NewActions">
           <separator/>
-          <action id="NewUssd" class="hms.ctap.idea.plugin.action.NewServiceClassAction"/>
+          <action id="NewUssd" class="hms.tap.idea.plugin.action.NewServiceClassAction"/>
           <add-to-group anchor="after" group-id="NewGroup" relative-to-action="NewFromTemplate"/>
       </group>
 
 
       <group id="Tap.Http.Clients" class="com.intellij.openapi.actionSystem.DefaultActionGroup">
           <separator/>
-          <action id="smsClient" class="hms.ctap.idea.plugin.action.snippet.SmsFieldGeneratorAction"></action>
-          <action id="ussdClient" class="hms.ctap.idea.plugin.action.snippet.UssdFieldGeneratorAction"></action>
-          <action id="subscriptionClient" class="hms.ctap.idea.plugin.action.snippet.SubscriptionFieldGeneratorAction"></action>
-          <action id="caasClient" class="hms.ctap.idea.plugin.action.snippet.CaasFieldGeneratorAction"></action>
-          <action id="lbsClient" class="hms.ctap.idea.plugin.action.snippet.LbsFieldGeneratorAction"></action>
+          <action id="smsClient" class="hms.tap.idea.plugin.action.snippet.SmsFieldGeneratorAction"></action>
+          <action id="ussdClient" class="hms.tap.idea.plugin.action.snippet.UssdFieldGeneratorAction"></action>
+          <action id="subscriptionClient" class="hms.tap.idea.plugin.action.snippet.SubscriptionFieldGeneratorAction"></action>
+          <action id="caasClient" class="hms.tap.idea.plugin.action.snippet.CaasFieldGeneratorAction"></action>
+          <action id="lbsClient" class="hms.tap.idea.plugin.action.snippet.LbsFieldGeneratorAction"></action>
           <add-to-group group-id="GenerateGroup" anchor="last"/>
       </group>
       <group id="Tap.Api.Utils" class="com.intellij.openapi.actionSystem.DefaultActionGroup">
           <separator/>
-          <action id="ussdSessionProcessor" class="hms.ctap.idea.plugin.action.snippet.UssdMsgProcessorFieldGeneratorAction"></action>
+          <action id="ussdSessionProcessor" class="hms.tap.idea.plugin.action.snippet.UssdMsgProcessorFieldGeneratorAction"></action>
           <add-to-group group-id="GenerateGroup" anchor="last"/>
       </group>
 
-      <group id="CTAP.mainToolBarActions">
+      <group id="TAP.mainToolBarActions">
           <separator/>
-          <action id="tap.simulator" class="hms.ctap.idea.plugin.action.simulator.TapSimulatorStartAction"></action>
+          <action id="tap.simulator" class="hms.tap.idea.plugin.action.simulator.TapSimulatorStartAction"></action>
           <separator/>
           <add-to-group group-id="MainToolBar" anchor="last"/>
       </group>
@@ -49,9 +46,9 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-     <projectTemplate projectType="CTAP Application" templatePath="resources/CTAP_Sample_Service_Application.zip" category="true"/>
-     <configurationType implementation="hms.ctap.idea.plugin.runner.conf.CtapRunnerConfigurationType" />
-     <programRunner id="Run" implementation="hms.ctap.idea.plugin.runner.runner.CtapProgramRunner" order="first"/>
-     <programRunner id="Debug" implementation="hms.ctap.idea.plugin.runner.runner.CtapProgramDebugger" order="last" />
+     <projectTemplate projectType="TAP Application" templatePath="resources/TAP_Sample_Service_Application.zip" category="true"/>
+     <configurationType implementation="hms.tap.idea.plugin.runner.conf.CtapRunnerConfigurationType" />
+     <programRunner id="Run" implementation="hms.tap.idea.plugin.runner.runner.CtapProgramRunner" order="first"/>
+     <programRunner id="Debug" implementation="hms.tap.idea.plugin.runner.runner.CtapProgramDebugger" order="last" />
   </extensions>
 </idea-plugin>
