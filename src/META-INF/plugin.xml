@@ -3,39 +3,38 @@
     <id>hms.tap.idea.plugin</id>
     <name>hSenid Mobile TAP IDE</name>
 
-  <description>
-      <![CDATA[
-      All in one plugin for telco application development with hSenid mobile apis. Logon to hSenid mobile <a href="http://devspace.hsenidmobile.com/">DevSpace</a> for more details.
-      IDE provide full scale support for:
-        <ul>
-        <li>Telco application sample projects.</li>
-        <li>Code generation.</li>
-        <li>Ant based extensive build system.</li>
-        <li>Running and debugging application with no extra configurations</li>
-        <li>Automatic code snippet generation for integrations.</li>
-        <li>In build tap simulator</li>
-        <li>Integrated SDK for USSD session management</li>
-        </ul>
-      ]]>
-  </description>
-  <version>1.0</version>
+    <description><![CDATA[
+        All in one plugin for telco application development with hSenid mobile apis. Logon to hSenid mobile <a href="http://devspace.hsenidmobile.com/">DevSpace</a> for more details.
+        </br>
+        <h2>TAP IDE features</h2>
+            <ul>
+            <li>1. Telco application skeleton projects.</li>
+            <li>2. Code generation.</li>
+            <li>3. Ant based extensive build system.</li>
+            <li>4. Running and debugging applications.</li>
+            <li>5. Automatic code snippet generation for integrations.</li>
+            <li>6. In build tap simulator.</li>
+            <li>7. Integrated SDK for USSD session management.</li>
+            </ul>
+        ]]></description>
+
+    <version>1.0.0</version>
     <vendor>hSenid Mobile</vendor>
     
-  <application-components>
+    <application-components>
     <!-- Add your application components here -->
-  </application-components>
+    </application-components>
 
-  <project-components>
+    <project-components>
     <!-- Add your project components here -->
-  </project-components>
+    </project-components>
 
-  <actions>
+    <actions>
       <group id="TAP.NewActions">
           <separator/>
           <action id="NewUssd" class="hms.tap.idea.plugin.action.NewServiceClassAction"/>
           <add-to-group anchor="after" group-id="NewGroup" relative-to-action="NewFromTemplate"/>
       </group>
-
 
       <group id="Tap.Http.Clients" class="com.intellij.openapi.actionSystem.DefaultActionGroup">
           <separator/>
@@ -58,14 +57,13 @@
           <separator/>
           <add-to-group group-id="MainToolBar" anchor="last"/>
       </group>
+    </actions>
 
-  </actions>
-
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-     <projectTemplate projectType="TAP Application" templatePath="resources/TAP_Sample_Service_Application.zip" category="true"/>
-     <configurationType implementation="hms.tap.idea.plugin.runner.conf.TapRunnerConfigurationType" />
-     <programRunner id="Run" implementation="hms.tap.idea.plugin.runner.runner.TapProgramRunner" order="first"/>
-     <programRunner id="Debug" implementation="hms.tap.idea.plugin.runner.runner.TapProgramDebugger" order="last" />
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+         <projectTemplate projectType="TAP Application" templatePath="resources/TAP_Sample_Service_Application.zip" category="true"/>
+         <configurationType implementation="hms.tap.idea.plugin.runner.conf.TapRunnerConfigurationType" />
+         <programRunner id="Run" implementation="hms.tap.idea.plugin.runner.runner.TapProgramRunner" order="first"/>
+         <programRunner id="Debug" implementation="hms.tap.idea.plugin.runner.runner.TapProgramDebugger" order="last" />
+    </extensions>
 </idea-plugin>

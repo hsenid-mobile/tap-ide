@@ -39,7 +39,7 @@
         <properties>
           <toolTipText value="@author: Gui Keller"/>
         </properties>
-        <border type="none" title="Jetty Runner - Run Jetty Run"/>
+        <border type="none" title="Tap Runner - Run TAP Application"/>
         <children>
           <component id="f1ad1" class="javax.swing.JLabel" binding="firstMsgLabel">
             <constraints>
@@ -47,7 +47,7 @@
               <forms defaultalign-horz="false"/>
             </constraints>
             <properties>
-              <text value="Welcome to Jetty Runner - feel free to change the default configuration."/>
+              <text value="Welcome to Tap Runner - feel free to change the default configuration."/>
             </properties>
           </component>
           <component id="ba705" class="javax.swing.JLabel" binding="secondMsgLabel">
