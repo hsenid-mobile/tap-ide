@@ -1,8 +1,11 @@
-<idea-plugin version="2">
-  <name>hSenid Mobile TAP IDE</name>
+<idea-plugin>
+
+    <id>hms.tap.idea.plugin</id>
+    <name>hSenid Mobile TAP IDE</name>
+
   <description>
       <![CDATA[
-      All in one plugin for telco application development with hSenid mobile apis. Logon to hSenid mobile DevSpace for more details<a href="http://devspace.hsenidmobile.com/">DevSpace</a>.
+      All in one plugin for telco application development with hSenid mobile apis. Logon to hSenid mobile <a href="http://devspace.hsenidmobile.com/">DevSpace</a> for more details.
       IDE provide full scale support for:
         <ul>
         <li>Telco application sample projects.</li>
@@ -16,7 +19,7 @@
       ]]>
   </description>
   <version>1.0</version>
-  <vendor>hms</vendor>
+    <vendor>hSenid Mobile</vendor>
     
   <application-components>
     <!-- Add your application components here -->

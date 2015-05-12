@@ -19,11 +19,11 @@ public class TapRunnerConfigurationType implements ConfigurationType {
     }
 
     public String getDisplayName() {
-        return "TAP Runner";
+        return "Tap Runner";
     }
 
     public String getConfigurationTypeDescription() {
-        return "IntelliJ IDEA TAP Runner";
+        return "IntelliJ IDEA Tap Runner";
     }
 
     public Icon getIcon() {
@@ -32,7 +32,7 @@ public class TapRunnerConfigurationType implements ConfigurationType {
 
     @NotNull
     public String getId() {
-        return "TAPRunner-By-hms";
+        return "TapRunner-By-hms";
     }
 
     public ConfigurationFactory[] getConfigurationFactories() {
