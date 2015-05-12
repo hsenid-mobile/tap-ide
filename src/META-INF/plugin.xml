@@ -20,7 +20,8 @@
 
     <version>1.0.0</version>
     <vendor>hSenid Mobile</vendor>
-    
+    <idea-version since-build="13.0"/>
+
     <application-components>
     <!-- Add your application components here -->
     </application-components>
