@@ -19,8 +19,8 @@
         ]]></description>
 
     <version>1.0.0</version>
-    <vendor>hSenid Mobile</vendor>
-    <idea-version since-build="13.0"/>
+    <vendor url="http://www.hsenidmobile.com/">hSenid Mobile</vendor>
+    <idea-version since-build="139.225"/>
 
     <application-components>
     <!-- Add your application components here -->
