@@ -1,5 +1,5 @@
 <idea-plugin>
-
+    <depends>com.intellij.modules.java</depends>
     <id>hms.tap.idea.plugin</id>
     <name>hSenid Mobile TAP IDE</name>
 
